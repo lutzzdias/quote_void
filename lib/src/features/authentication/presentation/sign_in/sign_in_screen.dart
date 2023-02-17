@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quote_void/src/common_widgets/colored_safe_area.dart';
 import 'package:quote_void/src/constants/app_sizes.dart';
+import 'package:quote_void/src/constants/theme/app_text_style.dart';
 
 class SignInScreen extends ConsumerWidget {
   const SignInScreen({super.key});
@@ -24,10 +25,10 @@ class SignInScreen extends ConsumerWidget {
                   radius: 75,
                 ),
                 gapH12,
-                Text(
+                const Text(
                   'Quote Void',
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: AppTextStyle.title,
                 ),
                 gapH32,
                 const TextField(
@@ -48,9 +49,7 @@ class SignInScreen extends ConsumerWidget {
                   alignment: Alignment.centerRight,
                   child: Text(
                     'Forgot password',
-                    style: TextStyle(
-                      decoration: TextDecoration.underline,
-                    ),
+                    style: AppTextStyle.link,
                   ),
                 ),
                 gapH24,
@@ -61,15 +60,15 @@ class SignInScreen extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(20),
                     ),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Sign In',
-                    style: Theme.of(context).textTheme.bodyLarge,
+                    style: AppTextStyle.titleSmall,
                   ),
                 ),
                 gapH12,
-                Text(
+                const Text(
                   'Or',
-                  style: Theme.of(context).textTheme.bodySmall,
+                  style: AppTextStyle.bodyTranslucent,
                   textAlign: TextAlign.center,
                 ),
                 gapH12,
@@ -96,13 +95,13 @@ class SignInScreen extends ConsumerWidget {
                 gapH32,
                 RichText(
                   textAlign: TextAlign.center,
-                  text: TextSpan(
+                  text: const TextSpan(
                       text: 'Don\'t have an account? ',
-                      style: Theme.of(context).textTheme.bodyMedium,
+                      style: AppTextStyle.body,
                       children: [
                         TextSpan(
                           text: 'Sign up',
-                          style: Theme.of(context).textTheme.bodySmall,
+                          style: AppTextStyle.linkBold,
                         ),
                       ]),
                 ),
