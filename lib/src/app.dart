@@ -9,7 +9,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Quote Void',
-      theme: ThemeData(),
+      theme: ThemeData(
+          appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.white,
+      )),
       routerConfig: goRouter,
     );
   }
