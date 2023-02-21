@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quote_void/src/constants/theme/app_colors.dart';
 
 class ColoredSafeArea extends StatelessWidget {
   final Widget child;
@@ -12,12 +13,9 @@ class ColoredSafeArea extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: color ?? Theme.of(context).appBarTheme.backgroundColor,
+      color: color ?? AppColors.gray,
       child: SafeArea(
-        child: Container(
-          color: Theme.of(context).colorScheme.background,
-          child: child,
-        ),
+        child: child,
       ),
     );
   }
