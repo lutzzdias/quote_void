@@ -13,13 +13,14 @@ class HomeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         children: [
-          SizedBox(
+          const SizedBox(
             width: double.infinity,
           ),
-          Text('Home'),
+          const Text('Home'),
           ElevatedButton(
-              onPressed: () => context.goNamed(AppRoute.signIn.name),
-              child: Text('Go to signin'))
+            onPressed: () => context.goNamed(AppRoute.signIn.name),
+            child: const Text('Go to signin'),
+          )
         ],
       ),
     );
