@@ -13,6 +13,7 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: Fix screen slight resize on keyboard appearance
     // TODO: Modularize this screen
+    // TODO: Add custom icons for the buttons
     return CustomScaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -49,6 +50,7 @@ class SignInScreen extends StatelessWidget {
             obscureText: true,
             decoration: InputDecoration(
               hintText: 'Password',
+              // TODO: Change icon depending on wehther obscureText is true or false
               suffixIcon: Icon(Icons.remove_red_eye),
             ),
           ),
@@ -69,6 +71,7 @@ class SignInScreen extends StatelessWidget {
           SizedBox(
             height: Sizes.p48,
             child: OutlinedButton(
+              // TODO: Implement signIn logic
               onPressed: () {},
               style: AppButtons.outlinedButtonStyle,
               child: const Text(
@@ -93,7 +96,7 @@ class SignInScreen extends StatelessWidget {
                 'Google',
                 style: AppTextStyle.subtitle,
               ),
-              style: AppButtons.whiteOutlinedButtonStyle,
+              style: AppButtons.outlinedButtonStyle,
             ),
           ),
           gapH16,
@@ -101,12 +104,12 @@ class SignInScreen extends StatelessWidget {
             height: Sizes.p48,
             child: OutlinedButton.icon(
               onPressed: () {},
-              icon: const Icon(Icons.abc),
+              icon: const Icon(Icons.star),
               label: const Text(
                 'Apple ID',
                 style: AppTextStyle.subtitle,
               ),
-              style: AppButtons.whiteOutlinedButtonStyle,
+              style: AppButtons.outlinedButtonStyle,
             ),
           ),
           const Spacer(
