@@ -18,7 +18,7 @@ class CustomOutlinedButton extends StatelessWidget {
       height: Sizes.p48,
       child: OutlinedButton(
         onPressed: onPressed,
-        style: AppButtons.outlinedButtonStyle,
+        style: AppButtonStyle.outlinedButtonStyle,
         child: Text(
           title,
           style: AppTextStyle.titleSmall,

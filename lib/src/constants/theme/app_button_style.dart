@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quote_void/src/constants/app_sizes.dart';
 import 'package:quote_void/src/constants/theme/app_colors.dart';
 
-class AppButtons {
+class AppButtonStyle {
   static final outlinedButtonStyle = OutlinedButton.styleFrom(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(20),

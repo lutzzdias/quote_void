@@ -26,7 +26,7 @@ class CustomOutlinedIconButton extends StatelessWidget {
           title,
           style: AppTextStyle.subtitle,
         ),
-        style: AppButtons.outlinedButtonStyle,
+        style: AppButtonStyle.outlinedButtonStyle,
       ),
     );
   }
