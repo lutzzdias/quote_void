@@ -27,14 +27,17 @@ class SignUpScreen extends StatelessWidget {
           const Spacer(
             flex: 10,
           ),
-          const Expanded(
+          Expanded(
             flex: 35,
-            child: CircleAvatar(
-              backgroundColor: AppColors.black,
-              child: Icon(
-                Icons.image,
-                color: AppColors.white,
-                size: Sizes.p48,
+            child: GestureDetector(
+              onTap: () => debugPrint('Click on avatar placeholder'),
+              child: const CircleAvatar(
+                backgroundColor: AppColors.black,
+                child: Icon(
+                  Icons.person_rounded,
+                  color: AppColors.white,
+                  size: Sizes.p48,
+                ),
               ),
             ),
           ),
