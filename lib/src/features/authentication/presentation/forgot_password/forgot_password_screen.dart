@@ -4,7 +4,6 @@ import 'package:quote_void/src/common_widgets/custom_outlined_button.dart';
 import 'package:quote_void/src/common_widgets/custom_scaffold.dart';
 import 'package:quote_void/src/common_widgets/text_with_link.dart';
 import 'package:quote_void/src/constants/app_sizes.dart';
-import 'package:quote_void/src/constants/theme/app_button_style.dart';
 import 'package:quote_void/src/constants/theme/app_text_style.dart';
 import 'package:quote_void/src/routing/app_router.dart';
 
@@ -24,7 +23,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               fit: BoxFit.fitHeight,
             ),
           ),
-          Spacer(),
+          const Spacer(),
           Row(
             children: const [
               Icon(
@@ -39,7 +38,7 @@ class ForgotPasswordScreen extends StatelessWidget {
             ],
           ),
           gapH32,
-          Text(
+          const Text(
             'Please enter your email address, so we can send you a link to reset your password.',
             style: AppTextStyle.body,
           ),
@@ -57,7 +56,6 @@ class ForgotPasswordScreen extends StatelessWidget {
             onPressed: () => debugPrint('Click on send link'),
           ),
           gapH32,
-          // TODO: make widget
           TextWithLink(
             text: 'Return to ',
             linkText: 'Sign in',
@@ -65,7 +63,7 @@ class ForgotPasswordScreen extends StatelessWidget {
           ),
           // Fix alignment due to logo size on top
           gapH64,
-          Spacer(),
+          const Spacer(),
         ],
       ),
     );

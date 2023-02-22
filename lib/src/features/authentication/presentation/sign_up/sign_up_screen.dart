@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quote_void/src/common_widgets/custom_outlined_button.dart';
 import 'package:quote_void/src/common_widgets/custom_scaffold.dart';
+import 'package:quote_void/src/common_widgets/password_field.dart';
 import 'package:quote_void/src/common_widgets/text_with_link.dart';
 import 'package:quote_void/src/constants/app_sizes.dart';
-import 'package:quote_void/src/constants/theme/app_button_style.dart';
 import 'package:quote_void/src/constants/theme/app_colors.dart';
-import 'package:quote_void/src/constants/theme/app_text_style.dart';
 import 'package:quote_void/src/routing/app_router.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -41,14 +40,14 @@ class SignUpScreen extends StatelessWidget {
           ),
           const Spacer(flex: 10),
           const TextField(
-            keyboardType: TextInputType.emailAddress,
+            keyboardType: TextInputType.name,
             decoration: InputDecoration(
               hintText: 'Name',
             ),
           ),
           gapH16,
           const TextField(
-            keyboardType: TextInputType.emailAddress,
+            keyboardType: TextInputType.text,
             decoration: InputDecoration(
               hintText: 'Username',
             ),
@@ -61,15 +60,7 @@ class SignUpScreen extends StatelessWidget {
             ),
           ),
           gapH16,
-          const TextField(
-            keyboardType: TextInputType.visiblePassword,
-            obscureText: true,
-            decoration: InputDecoration(
-              hintText: 'Password',
-              // TODO: Change icon depending on wehther obscureText is true or false
-              suffixIcon: Icon(Icons.remove_red_eye),
-            ),
-          ),
+          const PasswordField(),
           const Spacer(flex: 15),
           CustomOutlinedButton(
             title: 'Sign up',

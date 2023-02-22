@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quote_void/src/common_widgets/custom_outlined_button.dart';
 import 'package:quote_void/src/common_widgets/custom_scaffold.dart';
+import 'package:quote_void/src/common_widgets/password_field.dart';
 import 'package:quote_void/src/common_widgets/text_with_link.dart';
 import 'package:quote_void/src/constants/app_sizes.dart';
 import 'package:quote_void/src/constants/theme/app_button_style.dart';
@@ -14,7 +15,6 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: Fix screen slight resize on keyboard appearance
-    // TODO: Modularize this screen
     // TODO: Add custom icons for the buttons
     return CustomScaffold(
       body: Column(
@@ -47,15 +47,7 @@ class SignInScreen extends StatelessWidget {
             ),
           ),
           gapH16,
-          const TextField(
-            keyboardType: TextInputType.visiblePassword,
-            obscureText: true,
-            decoration: InputDecoration(
-              hintText: 'Password',
-              // TODO: Change icon depending on wehther obscureText is true or false
-              suffixIcon: Icon(Icons.remove_red_eye),
-            ),
-          ),
+          const PasswordField(),
           gapH12,
           Align(
             alignment: Alignment.centerRight,
