@@ -61,7 +61,7 @@ class ForgotPasswordScreen extends StatelessWidget {
             linkText: 'Sign in',
             onTap: () => context.goNamed(AppRoute.signIn.name),
           ),
-          // Fix alignment due to logo size on top
+          // Space to fix alignment due to logo size on top
           gapH64,
           const Spacer(),
         ],

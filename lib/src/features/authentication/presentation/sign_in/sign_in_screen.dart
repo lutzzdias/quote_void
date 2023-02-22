@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quote_void/src/common_widgets/custom_outlined_button.dart';
+import 'package:quote_void/src/common_widgets/custom_outlined_icon_button.dart';
 import 'package:quote_void/src/common_widgets/custom_scaffold.dart';
 import 'package:quote_void/src/common_widgets/password_field.dart';
 import 'package:quote_void/src/common_widgets/text_with_link.dart';
@@ -74,30 +76,18 @@ class SignInScreen extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           gapH12,
-          SizedBox(
-            height: Sizes.p48,
-            child: OutlinedButton.icon(
-              onPressed: () {},
-              icon: const Icon(Icons.abc),
-              label: const Text(
-                'Google',
-                style: AppTextStyle.subtitle,
-              ),
-              style: AppButtons.outlinedButtonStyle,
-            ),
+          CustomOutlinedIconButton(
+            title: 'Google',
+            icon: Icons.android,
+            // TODO: implement google login logic
+            onPressed: () => debugPrint('Click on google'),
           ),
           gapH16,
-          SizedBox(
-            height: Sizes.p48,
-            child: OutlinedButton.icon(
-              onPressed: () {},
-              icon: const Icon(Icons.star),
-              label: const Text(
-                'Apple ID',
-                style: AppTextStyle.subtitle,
-              ),
-              style: AppButtons.outlinedButtonStyle,
-            ),
+          CustomOutlinedIconButton(
+            title: 'Apple ID',
+            icon: Icons.apple,
+            // TODO: implement apple id login logic
+            onPressed: () => debugPrint('Click on apple ID'),
           ),
           const Spacer(
             flex: 35,
