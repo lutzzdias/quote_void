@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quote_void/src/common_widgets/custom_outlined_button.dart';
 import 'package:quote_void/src/common_widgets/custom_scaffold.dart';
 import 'package:quote_void/src/constants/app_sizes.dart';
 import 'package:quote_void/src/constants/theme/app_button_style.dart';
@@ -49,19 +50,13 @@ class ForgotPasswordScreen extends StatelessWidget {
             ),
           ),
           gapH64,
-          SizedBox(
-            height: Sizes.p48,
-            child: OutlinedButton(
-              // TODO: Implement send recover password link logic
-              onPressed: () {},
-              style: AppButtons.outlinedButtonStyle,
-              child: const Text(
-                'Send link',
-                style: AppTextStyle.titleSmall,
-              ),
-            ),
+          CustomOutlinedButton(
+            title: 'Send link',
+            // TODO: implement send recover link logic
+            onPressed: () => debugPrint('Click on send link'),
           ),
           gapH32,
+          // TODO: make widget
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

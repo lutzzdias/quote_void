@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quote_void/src/common_widgets/custom_outlined_button.dart';
 import 'package:quote_void/src/common_widgets/custom_scaffold.dart';
 import 'package:quote_void/src/constants/app_sizes.dart';
 import 'package:quote_void/src/constants/theme/app_button_style.dart';
@@ -69,19 +70,13 @@ class SignUpScreen extends StatelessWidget {
             ),
           ),
           const Spacer(flex: 15),
-          SizedBox(
-            height: Sizes.p48,
-            child: OutlinedButton(
-              // TODO: Implement signIn logic
-              onPressed: () {},
-              style: AppButtons.outlinedButtonStyle,
-              child: const Text(
-                'Sign Up',
-                style: AppTextStyle.titleSmall,
-              ),
-            ),
+          CustomOutlinedButton(
+            title: 'Sign up',
+            // TODO: implement signUp logic
+            onPressed: () => debugPrint('Click on sign up'),
           ),
           const Spacer(flex: 15),
+          // TODO: make widget
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
