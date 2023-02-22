@@ -12,5 +12,18 @@ class AppButtons {
     ),
     padding: const EdgeInsets.all(Sizes.p8),
     foregroundColor: AppColors.black,
+    backgroundColor: AppColors.transparent,
+  );
+
+  static final whiteOutlinedButtonStyle = OutlinedButton.styleFrom(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(20),
+    ),
+    side: const BorderSide(
+      width: 1,
+    ),
+    padding: const EdgeInsets.all(Sizes.p8),
+    foregroundColor: AppColors.black,
+    backgroundColor: AppColors.white,
   );
 }
