@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quote_void/src/common_widgets/custom_outlined_button.dart';
 import 'package:quote_void/src/common_widgets/custom_scaffold.dart';
+import 'package:quote_void/src/common_widgets/text_with_link.dart';
 import 'package:quote_void/src/constants/app_sizes.dart';
 import 'package:quote_void/src/constants/theme/app_button_style.dart';
 import 'package:quote_void/src/constants/theme/app_text_style.dart';
@@ -57,21 +58,10 @@ class ForgotPasswordScreen extends StatelessWidget {
           ),
           gapH32,
           // TODO: make widget
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                'Return to ',
-                style: AppTextStyle.body,
-              ),
-              GestureDetector(
-                onTap: () => context.goNamed(AppRoute.signIn.name),
-                child: const Text(
-                  'Sign in',
-                  style: AppTextStyle.linkBold,
-                ),
-              ),
-            ],
+          TextWithLink(
+            text: 'Return to ',
+            linkText: 'Sign in',
+            onTap: () => context.goNamed(AppRoute.signIn.name),
           ),
           // Fix alignment due to logo size on top
           gapH64,

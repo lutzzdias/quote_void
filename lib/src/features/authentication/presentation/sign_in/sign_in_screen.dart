@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quote_void/src/common_widgets/custom_outlined_button.dart';
 import 'package:quote_void/src/common_widgets/custom_scaffold.dart';
+import 'package:quote_void/src/common_widgets/text_with_link.dart';
 import 'package:quote_void/src/constants/app_sizes.dart';
 import 'package:quote_void/src/constants/theme/app_button_style.dart';
 import 'package:quote_void/src/constants/theme/app_text_style.dart';
@@ -109,22 +110,10 @@ class SignInScreen extends StatelessWidget {
           const Spacer(
             flex: 35,
           ),
-          // TODO: make widget
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                'Don\'t have an account? ',
-                style: AppTextStyle.body,
-              ),
-              GestureDetector(
-                onTap: () => context.goNamed(AppRoute.signUp.name),
-                child: const Text(
-                  'Sign up',
-                  style: AppTextStyle.linkBold,
-                ),
-              ),
-            ],
+          TextWithLink(
+            text: 'Don\'t have an account? ',
+            linkText: 'Sign up',
+            onTap: () => context.goNamed(AppRoute.signUp.name),
           ),
           const Spacer(
             flex: 5,
