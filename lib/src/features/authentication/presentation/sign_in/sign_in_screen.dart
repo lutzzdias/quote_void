@@ -22,11 +22,11 @@ class SignInScreen extends StatelessWidget {
           const Spacer(
             flex: 15,
           ),
-          AspectRatio(
-            aspectRatio: 3,
+          SizedBox(
+            height: 132,
             child: Image.asset(
               'assets/logo.png',
-              fit: BoxFit.cover,
+              fit: BoxFit.fitHeight,
             ),
           ),
           gapH12,
