@@ -27,7 +27,7 @@ class AuthRepository {
       idToken: googleAuth?.idToken,
     );
 
-    await FirebaseAuth.instance.signInWithCredential(credential);
+    await _auth.signInWithCredential(credential);
   }
 
   // Requires an apple developer account
