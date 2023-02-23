@@ -15,6 +15,9 @@ class MyApp extends StatelessWidget {
         routerConfig: goRouter,
         theme: ThemeData(
           scaffoldBackgroundColor: AppColors.gray,
+          colorScheme: const ColorScheme.light().copyWith(
+            primary: AppColors.black,
+          ),
         ),
       ),
     );
