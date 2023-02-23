@@ -7,14 +7,14 @@ class SignInController extends AutoDisposeAsyncNotifier<void> {
   @override
   FutureOr<void> build() {}
 
+  // TODO: Fix bug where signIn does not update user
   Future<void> signInWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
     final authRepository = ref.read(authRepositoryProvider);
     state = await AsyncValue.guard(
-      () async =>
-          await authRepository.signInWithEmailAndPassword(email, password),
+      () => authRepository.signInWithEmailAndPassword(email, password),
     );
   }
 
