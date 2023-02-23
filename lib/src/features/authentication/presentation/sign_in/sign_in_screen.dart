@@ -97,9 +97,8 @@ class SignInScreen extends ConsumerWidget {
           CustomOutlinedIconButton(
             title: 'Apple ID',
             icon: Icons.apple,
-            onPressed: () async => await ref
-                .read(signInControllerProvider.notifier)
-                .signOutGoogle(),
+            onPressed: () => debugPrint(
+                'This requires an apple developer account (100U\$/yr)'),
           ),
           const Spacer(
             flex: 35,

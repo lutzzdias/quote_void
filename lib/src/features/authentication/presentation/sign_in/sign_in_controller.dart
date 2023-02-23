@@ -22,11 +22,6 @@ class SignInController extends AutoDisposeAsyncNotifier<void> {
     final authRepository = ref.read(authRepositoryProvider);
     state = await AsyncValue.guard(() => authRepository.signInWithGoogle());
   }
-
-  Future<void> signOutGoogle() async {
-    final authRepository = ref.read(authRepositoryProvider);
-    state = await AsyncValue.guard(() => authRepository.signOutGoogle());
-  }
 }
 
 final signInControllerProvider =
