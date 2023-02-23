@@ -15,24 +15,24 @@ enum AppRoute {
 }
 
 final goRouter = GoRouter(
-  initialLocation: '/category/list',
+  initialLocation: '/',
   debugLogDiagnostics: true,
-  /*
-    redirect: (context, state) {
-      // TODO: check if user is logged in
-      const bool isLoggedIn = false;
 
-      if (isLoggedIn) {
-        if (state.subloc.startsWith('/authentication')) {
-          return '/';
-        }
-      } else if (!state.subloc.startsWith('/authentication')) {
-        return '/authentication/signIn';
-      } else {
-        return state.fullpath;
+  redirect: (context, state) {
+    // TODO: check if user is logged in
+    const bool isLoggedIn = false;
+
+    if (isLoggedIn) {
+      if (state.subloc.startsWith('/authentication')) {
+        return '/';
       }
-    },
-  */
+    } else if (!state.subloc.startsWith('/authentication')) {
+      return '/authentication/signIn';
+    } else {
+      return state.fullpath;
+    }
+  },
+
   // TODO: Implement provider which will notify when the user is updated
   // refreshListenable: null,
   routes: [
