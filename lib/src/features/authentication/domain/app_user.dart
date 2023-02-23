@@ -1,7 +1,5 @@
-import 'package:uuid/uuid.dart';
-
 class AppUser {
-  Uuid id;
+  String id;
   String name;
   String username;
   String email;
