@@ -9,7 +9,13 @@ import 'package:quote_void/src/constants/theme/app_colors.dart';
 import 'package:quote_void/src/routing/app_router.dart';
 
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({super.key});
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  SignUpScreen({super.key});
+
+  String get email => _emailController.text;
+  String get password => _passwordController.text;
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +69,9 @@ class SignUpScreen extends StatelessWidget {
             ),
           ),
           gapH16,
-          const PasswordField(),
+          PasswordField(
+            passwordController: _passwordController,
+          ),
           const Spacer(flex: 15),
           CustomOutlinedButton(
             title: 'Sign up',

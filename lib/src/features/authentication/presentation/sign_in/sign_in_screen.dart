@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quote_void/src/common_widgets/custom_outlined_button.dart';
 import 'package:quote_void/src/common_widgets/custom_outlined_icon_button.dart';
@@ -7,15 +8,23 @@ import 'package:quote_void/src/common_widgets/password_field.dart';
 import 'package:quote_void/src/common_widgets/text_with_link.dart';
 import 'package:quote_void/src/constants/app_sizes.dart';
 import 'package:quote_void/src/constants/theme/app_text_style.dart';
+import 'package:quote_void/src/features/authentication/presentation/sign_in/sign_in_controller.dart';
 import 'package:quote_void/src/routing/app_router.dart';
 
-class SignInScreen extends StatelessWidget {
-  const SignInScreen({super.key});
+class SignInScreen extends ConsumerWidget {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  SignInScreen({super.key});
+
+  String get email => _emailController.text;
+  String get password => _passwordController.text;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     // TODO: Fix screen slight resize on keyboard appearance
     // TODO: Add custom icons for the buttons
+    // TODO: Make UI reactive to loading state
     return CustomScaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -40,14 +49,17 @@ class SignInScreen extends StatelessWidget {
           const Spacer(
             flex: 25,
           ),
-          const TextField(
+          TextField(
+            controller: _emailController,
             keyboardType: TextInputType.emailAddress,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               hintText: 'Email address or username',
             ),
           ),
           gapH16,
-          const PasswordField(),
+          PasswordField(
+            passwordController: _passwordController,
+          ),
           gapH12,
           Align(
             alignment: Alignment.centerRight,
@@ -64,8 +76,9 @@ class SignInScreen extends StatelessWidget {
           ),
           CustomOutlinedButton(
             title: 'Sign in',
-            // TODO: Implement signIn logic
-            onPressed: () => debugPrint('Click on sign in'),
+            onPressed: () => ref
+                .read(signInControllerProvider.notifier)
+                .signInWithEmailAndPassword(email: email, password: password),
           ),
           gapH12,
           const Text(
@@ -77,15 +90,16 @@ class SignInScreen extends StatelessWidget {
           CustomOutlinedIconButton(
             title: 'Google',
             icon: Icons.android,
-            // TODO: implement google login logic
-            onPressed: () => debugPrint('Click on google'),
+            onPressed: () =>
+                ref.read(signInControllerProvider.notifier).signInWithGoogle(),
           ),
           gapH16,
           CustomOutlinedIconButton(
             title: 'Apple ID',
             icon: Icons.apple,
-            // TODO: implement apple id login logic
-            onPressed: () => debugPrint('Click on apple ID'),
+            onPressed: () async => await ref
+                .read(signInControllerProvider.notifier)
+                .signOutGoogle(),
           ),
           const Spacer(
             flex: 35,
