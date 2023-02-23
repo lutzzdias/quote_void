@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:quote_void/src/features/authentication/presentation/forgot_password/forgot_password_screen.dart';
 import 'package:quote_void/src/features/authentication/presentation/sign_in/sign_in_screen.dart';
 import 'package:quote_void/src/features/authentication/presentation/sign_up/sign_up_screen.dart';
+import 'package:quote_void/src/features/category/presentation/categories_list/categories_list_screen.dart';
 import 'package:quote_void/src/features/home/home_screen.dart';
 
 enum AppRoute {
@@ -10,25 +11,28 @@ enum AppRoute {
   signIn,
   signUp,
   forgotPassword,
+  categoryList,
 }
 
 final goRouter = GoRouter(
-  initialLocation: '/',
+  initialLocation: '/category/list',
   debugLogDiagnostics: true,
-  redirect: (context, state) {
-    // TODO: check if user is logged in
-    const bool isLoggedIn = false;
+  /*
+    redirect: (context, state) {
+      // TODO: check if user is logged in
+      const bool isLoggedIn = false;
 
-    if (isLoggedIn) {
-      if (state.subloc.startsWith('/authentication')) {
-        return '/';
+      if (isLoggedIn) {
+        if (state.subloc.startsWith('/authentication')) {
+          return '/';
+        }
+      } else if (!state.subloc.startsWith('/authentication')) {
+        return '/authentication/signIn';
+      } else {
+        return state.fullpath;
       }
-    } else if (!state.subloc.startsWith('/authentication')) {
-      return '/authentication/signIn';
-    } else {
-      return state.fullpath;
-    }
-  },
+    },
+  */
   // TODO: Implement provider which will notify when the user is updated
   // refreshListenable: null,
   routes: [
@@ -64,6 +68,14 @@ final goRouter = GoRouter(
       pageBuilder: (context, state) => MaterialPage(
         key: state.pageKey,
         child: const ForgotPasswordScreen(),
+      ),
+    ),
+    GoRoute(
+      path: '/category/list',
+      name: AppRoute.categoryList.name,
+      pageBuilder: (context, state) => MaterialPage(
+        key: state.pageKey,
+        child: CategoriesListScreen(),
       ),
     ),
   ],
