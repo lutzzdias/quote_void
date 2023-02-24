@@ -11,10 +11,16 @@ class AuthRepository {
   User? get currentUser => _auth.currentUser;
 
   Future<void> signInWithEmailAndPassword(String email, String password) =>
-      _auth.signInWithEmailAndPassword(email: email, password: password);
+      AsyncValue.guard(
+        () =>
+            _auth.signInWithEmailAndPassword(email: email, password: password),
+      );
 
   Future<void> signUpWithEmailAndPassword(String email, String password) =>
-      _auth.createUserWithEmailAndPassword(email: email, password: password);
+      AsyncValue.guard(
+        () => _auth.createUserWithEmailAndPassword(
+            email: email, password: password),
+      );
 
   Future<void> signInWithGoogle() async {
     // Trigger the authentication flow

@@ -7,7 +7,6 @@ class SignInController extends AutoDisposeAsyncNotifier<void> {
   @override
   FutureOr<void> build() {}
 
-  // TODO: Fix bug where signIn does not update user
   Future<void> signInWithEmailAndPassword({
     required String email,
     required String password,

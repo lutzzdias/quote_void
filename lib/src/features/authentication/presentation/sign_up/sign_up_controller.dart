@@ -12,8 +12,6 @@ class SignUpController extends AutoDisposeAsyncNotifier<void> {
     required String password,
   }) async {
     final authRepository = ref.read(authRepositoryProvider);
-    print(email);
-    print(password);
     state = await AsyncValue.guard(
       () => authRepository.signUpWithEmailAndPassword(email, password),
     );
