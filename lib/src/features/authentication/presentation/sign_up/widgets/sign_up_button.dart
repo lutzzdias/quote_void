@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quote_void/src/common_widgets/custom_outlined_button.dart';
 import 'package:quote_void/src/features/authentication/presentation/sign_up/sign_up_controller.dart';
+import 'package:quote_void/src/utils/async_value_ui.dart';
 
 class SignUpButton extends ConsumerWidget {
   final TextEditingController emailController;
@@ -15,30 +16,17 @@ class SignUpButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-// TODO: Improve error handling with asyncValue
-    ref.listen<AsyncValue<void>>(
+    ref.listen<VoidAsyncValue>(
       signUpControllerProvider,
-      (_, state) => state.whenOrNull(
-        // TODO: Improve error snackbar UI
-        error: (error, _) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                error.toString(),
-              ),
-            ),
-          );
-        },
-      ),
+      (_, state) => state.showSnackBarOnError(context),
     );
 
     final signUpState = ref.watch(signUpControllerProvider);
-    final isLoading = signUpState is AsyncLoading<void>;
 
     return CustomOutlinedButton(
       title: 'Sign up',
-      isLoading: isLoading,
-      onPressed: isLoading
+      isLoading: signUpState.isLoading,
+      onPressed: signUpState.isLoading
           ? null
           : () => ref
               .read(signUpControllerProvider.notifier)
