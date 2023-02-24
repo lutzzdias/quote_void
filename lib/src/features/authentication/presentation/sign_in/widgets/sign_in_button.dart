@@ -4,6 +4,9 @@ import 'package:quote_void/src/common_widgets/custom_outlined_button.dart';
 import 'package:quote_void/src/features/authentication/presentation/sign_in/sign_in_controller.dart';
 
 class SignInButton extends ConsumerWidget {
+  // TODO: Discover why passing the email and password did not work
+  // Before passing the onPressed, the email and password were passed and the onPressed logic was in this widget,
+  // however, the email and password were always empty strings, idk why
   final VoidCallback onPressed;
 
   const SignInButton({super.key, required this.onPressed});
