@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthRepository {
+  // TODO: Implement Multiple Auth Providers Linking logic
+  // * Link: https://firebase.google.com/docs/auth/flutter/account-linking
   final FirebaseAuth _auth;
   final GoogleSignIn _googleAuth;
   AuthRepository(this._auth, this._googleAuth);
@@ -17,7 +19,8 @@ class AuthRepository {
             _auth.signInWithEmailAndPassword(email: email, password: password),
       );
 
-  Future<void> signUpWithEmailAndPassword(String email, String password) =>
+  Future<AsyncValue> signUpWithEmailAndPassword(
+          String email, String password) =>
       AsyncValue.guard(
         () => _auth.createUserWithEmailAndPassword(
             email: email, password: password),

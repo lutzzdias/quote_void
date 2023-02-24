@@ -5,16 +5,15 @@ import 'package:quote_void/src/features/authentication/data/firebase_auth_reposi
 
 class SignUpController extends AutoDisposeAsyncNotifier<void> {
   @override
-  FutureOr<void> build() {}
+  FutureOr<void> build() => {};
 
   Future<void> signUpWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
     final authRepository = ref.read(authRepositoryProvider);
-    state = await AsyncValue.guard(
-      () => authRepository.signUpWithEmailAndPassword(email, password),
-    );
+    state = const AsyncValue.loading();
+    state = await authRepository.signUpWithEmailAndPassword(email, password);
   }
 }
 
