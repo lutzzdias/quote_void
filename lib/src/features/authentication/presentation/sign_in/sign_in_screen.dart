@@ -7,8 +7,8 @@ import 'package:quote_void/src/common_widgets/password_field.dart';
 import 'package:quote_void/src/common_widgets/text_with_link.dart';
 import 'package:quote_void/src/constants/app_sizes.dart';
 import 'package:quote_void/src/constants/theme/app_text_style.dart';
+import 'package:quote_void/src/features/authentication/presentation/widgets/auth_button.dart';
 import 'package:quote_void/src/features/authentication/presentation/sign_in/sign_in_controller.dart';
-import 'package:quote_void/src/features/authentication/presentation/sign_in/widgets/sign_in_button.dart';
 import 'package:quote_void/src/routing/app_router.dart';
 
 class SignInScreen extends ConsumerWidget {
@@ -70,9 +70,15 @@ class SignInScreen extends ConsumerWidget {
           const Spacer(
             flex: 20,
           ),
-          SignInButton(
-            emailController: _emailController,
-            passwordController: _passwordController,
+          AuthButton(
+            title: 'Sign In',
+            onPressed: () => ref
+                .read(signInControllerProvider.notifier)
+                .signInWithEmailAndPassword(
+                  email: _emailController.text,
+                  password: _passwordController.text,
+                ),
+            provider: signInControllerProvider,
           ),
           gapH12,
           const Text(
