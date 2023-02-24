@@ -78,6 +78,7 @@ class SignUpScreen extends ConsumerWidget {
           const Spacer(flex: 15),
           CustomOutlinedButton(
             title: 'Sign up',
+            isLoading: false,
             onPressed: () => ref
                 .read(signUpControllerProvider.notifier)
                 .signUpWithEmailAndPassword(email: email, password: password),

@@ -52,6 +52,7 @@ class ForgotPasswordScreen extends StatelessWidget {
           gapH64,
           CustomOutlinedButton(
             title: 'Send link',
+            isLoading: false,
             // TODO: implement send recover link logic
             onPressed: () => debugPrint('Click on send link'),
           ),
