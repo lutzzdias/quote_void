@@ -5,7 +5,7 @@ import 'package:quote_void/src/features/authentication/data/firebase_auth_reposi
 
 class SignUpController extends AutoDisposeAsyncNotifier<void> {
   @override
-  FutureOr<void> build() => {};
+  FutureOr<void> build() => null;
 
   Future<void> signUpWithEmailAndPassword({
     required String email,
