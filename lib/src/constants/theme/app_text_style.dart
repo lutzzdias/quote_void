@@ -26,6 +26,12 @@ class AppTextStyle {
     color: Colors.black,
   );
 
+  static const subtitleBold = TextStyle(
+    fontSize: Sizes.p20,
+    fontWeight: FontWeight.bold,
+    color: Colors.black,
+  );
+
   static const subtitleTranslucent = TextStyle(
     fontSize: Sizes.p20,
     fontWeight: FontWeight.normal,
