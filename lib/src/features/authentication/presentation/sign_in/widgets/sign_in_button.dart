@@ -7,9 +7,14 @@ class SignInButton extends ConsumerWidget {
   // TODO: Discover why passing the email and password did not work
   // Before passing the onPressed, the email and password were passed and the onPressed logic was in this widget,
   // however, the email and password were always empty strings, idk why
-  final VoidCallback onPressed;
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
 
-  const SignInButton({super.key, required this.onPressed});
+  const SignInButton({
+    super.key,
+    required this.emailController,
+    required this.passwordController,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -20,7 +25,13 @@ class SignInButton extends ConsumerWidget {
     return CustomOutlinedButton(
       title: 'Sign in',
       isLoading: isLoading,
-      onPressed: isLoading ? null : onPressed,
+      onPressed: isLoading
+          ? null
+          : () => ref
+              .read(signInControllerProvider.notifier)
+              .signInWithEmailAndPassword(
+                  email: emailController.text,
+                  password: passwordController.text),
     );
   }
 }

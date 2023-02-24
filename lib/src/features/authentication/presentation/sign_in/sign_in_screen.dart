@@ -17,14 +17,9 @@ class SignInScreen extends ConsumerWidget {
 
   SignInScreen({super.key});
 
-  String get email => _emailController.text;
-  String get password => _passwordController.text;
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // TODO: Fix screen slight resize on keyboard appearance
     // TODO: Add custom icons for the buttons
-    // TODO: Make UI reactive to loading state
 
     return CustomScaffold(
       body: Column(
@@ -76,9 +71,8 @@ class SignInScreen extends ConsumerWidget {
             flex: 20,
           ),
           SignInButton(
-            onPressed: () => ref
-                .read(signInControllerProvider.notifier)
-                .signInWithEmailAndPassword(email: email, password: password),
+            emailController: _emailController,
+            passwordController: _passwordController,
           ),
           gapH12,
           const Text(
