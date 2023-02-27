@@ -6,7 +6,7 @@ import 'package:quote_void/src/features/authentication/presentation/forgot_passw
 import 'package:quote_void/src/features/authentication/presentation/sign_in/sign_in_screen.dart';
 import 'package:quote_void/src/features/authentication/presentation/sign_up/sign_up_screen.dart';
 import 'package:quote_void/src/features/category/presentation/categories_list/categories_list_screen.dart';
-import 'package:quote_void/src/features/home/home_screen.dart';
+import 'package:quote_void/src/features/quote/presentation/all_quotes_screen.dart';
 import 'package:quote_void/src/routing/go_router_refresh_stream.dart';
 
 enum AppRoute {
@@ -15,6 +15,7 @@ enum AppRoute {
   signUp,
   forgotPassword,
   categoryList,
+  allQuotes,
 }
 
 final goRouterProvider = Provider<GoRouter>((ref) {
@@ -40,12 +41,12 @@ final goRouterProvider = Provider<GoRouter>((ref) {
     routes: [
       GoRoute(
         path: '/',
-        name: AppRoute.home.name,
+        name: AppRoute.allQuotes.name,
         pageBuilder: (context, state) => MaterialPage(
           key: state.pageKey,
           // fullscreenDialog -> makes the appBar have a close button instead of a back button
           // on iOS the screen is not closeable with the swipe gesture
-          child: const HomeScreen(),
+          child: const AllQuotesScreen(),
         ),
       ),
       GoRoute(
