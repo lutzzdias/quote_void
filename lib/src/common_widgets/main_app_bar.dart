@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quote_void/src/constants/app_sizes.dart';
 import 'package:quote_void/src/constants/theme/app_colors.dart';
+import 'package:quote_void/src/features/authentication/data/firebase_auth_repository.dart';
 
-class MainAppBar extends StatelessWidget {
+class MainAppBar extends ConsumerWidget {
   final bool showArrowBack;
   const MainAppBar({
     super.key,
@@ -11,7 +13,7 @@ class MainAppBar extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SizedBox(
       height: Sizes.p48,
       child: Row(
@@ -45,7 +47,13 @@ class MainAppBar extends StatelessWidget {
             ),
           ),
           gapW12,
-          const Expanded(flex: 10, child: CircleAvatar())
+          Expanded(
+            flex: 10,
+            child: GestureDetector(
+              onTap: () => ref.read(authRepositoryProvider).signOut(),
+              child: CircleAvatar(),
+            ),
+          ),
         ],
       ),
     );
