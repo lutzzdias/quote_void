@@ -11,6 +11,8 @@ import 'package:quote_void/src/features/authentication/presentation/sign_up/sign
 import 'package:quote_void/src/routing/app_router.dart';
 
 class SignUpScreen extends ConsumerWidget {
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -50,16 +52,18 @@ class SignUpScreen extends ConsumerWidget {
             ),
           ),
           const Spacer(flex: 10),
-          const TextField(
+          TextField(
+            controller: _nameController,
             keyboardType: TextInputType.name,
             decoration: InputDecoration(
               hintText: 'Name',
             ),
           ),
           gapH16,
-          const TextField(
+          TextField(
+            controller: _usernameController,
             keyboardType: TextInputType.text,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               hintText: 'Username',
             ),
           ),
@@ -78,11 +82,13 @@ class SignUpScreen extends ConsumerWidget {
           const Spacer(flex: 15),
           AuthButton(
             title: 'Sign up',
-            onPressed: () => ref
-                .read(signUpControllerProvider.notifier)
-                .signUpWithEmailAndPassword(
+            onPressed: () => ref.read(signUpControllerProvider.notifier).signUp(
+                  name: _nameController.text,
+                  username: _usernameController.text,
                   email: _emailController.text,
                   password: _passwordController.text,
+                  imageUrl:
+                      'https://images.vexels.com/media/users/3/129616/isolated/preview/fb517f8913bd99cd48ef00facb4a67c0-businessman-avatar-silhouette-by-vexels.png',
                 ),
             provider: signUpControllerProvider,
           ),

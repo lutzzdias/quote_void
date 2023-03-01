@@ -1,19 +1,29 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:quote_void/src/features/authentication/application/auth_service.dart';
 import 'package:quote_void/src/features/authentication/data/firebase_auth_repository.dart';
 
 class SignUpController extends AutoDisposeAsyncNotifier<void> {
   @override
   FutureOr<void> build() => null;
 
-  Future<void> signUpWithEmailAndPassword({
+  Future<void> signUp({
+    required String name,
+    required String username,
     required String email,
     required String password,
+    required String imageUrl,
   }) async {
-    final authRepository = ref.read(authRepositoryProvider);
+    final authService = ref.read(authServiceProvider);
     state = const AsyncValue.loading();
-    state = await authRepository.signUpWithEmailAndPassword(email, password);
+    state = await authService.signUp(
+      name: name,
+      username: username,
+      email: email,
+      password: password,
+      imageUrl: imageUrl,
+    );
   }
 }
 
