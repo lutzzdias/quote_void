@@ -12,4 +12,11 @@ class AppUser {
     required this.email,
     required this.imageUrl,
   });
+
+  Map<String, dynamic> toMap() => {
+        'name': name,
+        'username': username,
+        'email': email,
+        'imageUrl': imageUrl,
+      };
 }
