@@ -17,7 +17,9 @@ class AllQuotesScreen extends StatelessWidget {
       body: Column(
         children: [
           const MainAppBar(showArrowBack: false),
-          Expanded(
+          SizedBox(
+            // TODO: Use a constant (may need to create one)
+            height: 100,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: Sizes.p12),
               child: CategoryList(
@@ -73,28 +75,43 @@ class AllQuotesScreen extends StatelessWidget {
                 'Total: 17',
                 style: AppTextStyle.bodyTranslucent,
               ),
-              Expanded(
-                child: ListView.builder(
-                  itemBuilder: (context, index) {
-                    return Expanded(
-                      child: Column(
-                        children: [
-                          const Text(
-                              'Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content Content'),
-                          Row(
-                            children: const [
-                              Text('Brandon Sanderson'),
-                              Text('23/01/23')
-                            ],
+            ],
+          ),
+          Expanded(
+            child: ListView.builder(
+              // TODO: Set itemCount to actual length of data list
+              itemCount: 17,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.all(Sizes.p4),
+                  child: Column(
+                    children: [
+                      const Text(
+                        'As I fear not a child with a weapon he cannot lift, I’ll never fear the mind of a man who does not think.',
+                        style: AppTextStyle.body,
+                      ),
+                      gapH8,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Text(
+                            'Brandon Sanderson',
+                            style: AppTextStyle.bodyTranslucent,
+                          ),
+                          Text(
+                            '23/01/23',
+                            style: AppTextStyle.bodyTranslucent,
                           ),
                         ],
                       ),
-                    );
-                  },
-                ),
-              ),
-            ],
-          )
+                      // TODO: Compare to actual list length
+                      if (index != 17) Divider()
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
         ],
       ),
     );
