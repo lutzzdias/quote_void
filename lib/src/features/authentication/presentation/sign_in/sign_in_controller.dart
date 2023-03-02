@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quote_void/src/features/authentication/application/auth_service.dart';
-import 'package:quote_void/src/features/authentication/data/firebase_auth_repository.dart';
 
 class SignInController extends AutoDisposeAsyncNotifier<void> {
   late final AuthService _authService;
