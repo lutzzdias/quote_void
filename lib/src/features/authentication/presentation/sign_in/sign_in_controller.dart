@@ -21,6 +21,7 @@ class SignInController extends AutoDisposeAsyncNotifier<void> {
 
   Future<void> signInWithGoogle() async {
     state = const AsyncValue.loading();
+    // TODO: Create screen where user types in their username
     // TODO: Create user info in firebase
     state = await AsyncValue.guard(() => _authRepository.signInWithGoogle());
   }
