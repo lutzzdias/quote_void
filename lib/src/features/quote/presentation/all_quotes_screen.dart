@@ -105,7 +105,7 @@ class AllQuotesScreen extends StatelessWidget {
                         ],
                       ),
                       // TODO: Compare to actual list length
-                      if (index != 17) Divider()
+                      if (index != 17) const Divider()
                     ],
                   ),
                 );
