@@ -20,7 +20,7 @@ class SignInScreen extends ConsumerWidget {
     // TODO: Add custom icons for the buttons
 
     Future<void> signIn({String? email, String? password}) async {
-      await ref.read(authServiceProvider).signIn(
+      await ref.read(signInControllerProvider.notifier).signIn(
             email: email,
             password: password,
           );

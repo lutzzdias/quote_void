@@ -31,16 +31,14 @@ class AuthService {
     userRepository.createUser(user: user);
   }
 
-  Future<void> signIn({
-    String? email,
-    String? password,
-  }) async {
-    UserCredential result;
-    if (email != null && password != null) {
-      result = await authRepository.signInWithEmailAndPassword(email, password);
-    } else {
-      result = await authRepository.signInWithGoogle();
-    }
+  Future<void> signInWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async =>
+      await authRepository.signInWithEmailAndPassword(email, password);
+
+  Future<void> signInWithGoogle() async {
+    UserCredential result = await authRepository.signInWithGoogle();
 
     // TODO: See if its possible that it comes as null and deal with it accordingly
     if (result.additionalUserInfo!.isNewUser) {
@@ -48,10 +46,10 @@ class AuthService {
         // Deal with null values (create screen that requires user to add necessary fields and store them in the document in firestore)
         user: AppUser(
           id: result.user!.uid,
-          name: result.user!.displayName ?? '',
-          username: result.additionalUserInfo!.username ?? '',
-          email: result.user!.email ?? '',
-          imageUrl: result.user!.photoURL ?? '',
+          name: result.user!.displayName ?? 'null',
+          username: result.additionalUserInfo!.username ?? 'null',
+          email: result.user!.email ?? 'null',
+          imageUrl: result.user!.photoURL ?? 'null',
         ),
       );
     }
