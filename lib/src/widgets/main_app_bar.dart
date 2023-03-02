@@ -51,7 +51,10 @@ class MainAppBar extends ConsumerWidget {
             flex: 10,
             child: GestureDetector(
               onTap: () => ref.read(authRepositoryProvider).signOut(),
-              child: const CircleAvatar(),
+              child: const CircleAvatar(
+                // TODO: Get currentUser imageUrl from firestore
+                foregroundImage: null,
+              ),
             ),
           ),
         ],
