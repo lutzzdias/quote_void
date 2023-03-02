@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quote_void/src/features/authentication/data/firebase_auth_repository.dart';
 import 'package:quote_void/src/features/authentication/data/user_repository.dart';
@@ -9,27 +10,25 @@ class AuthService {
 
   AuthService({required this.authRepository, required this.userRepository});
 
-  Future<AsyncValue> signUp({
+  Future<void> signUp({
     required String name,
     required String username,
     required String email,
     required String password,
     required String imageUrl,
   }) async {
-    AsyncValue result =
+    UserCredential result =
         await authRepository.signUpWithEmailAndPassword(email, password);
 
     final AppUser user = AppUser(
-      id: result.asData?.value.user.uid,
+      id: result.user!.uid,
       name: name,
       username: username,
       email: email,
       imageUrl: imageUrl,
     );
 
-    await userRepository.createUser(user: user);
-
-    return result;
+    userRepository.createUser(user: user);
   }
 }
 

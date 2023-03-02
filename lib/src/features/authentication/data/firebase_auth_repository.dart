@@ -19,12 +19,9 @@ class AuthRepository {
             _auth.signInWithEmailAndPassword(email: email, password: password),
       );
 
-  Future<AsyncValue> signUpWithEmailAndPassword(
+  Future<UserCredential> signUpWithEmailAndPassword(
           String email, String password) =>
-      AsyncValue.guard(
-        () => _auth.createUserWithEmailAndPassword(
-            email: email, password: password),
-      );
+      _auth.createUserWithEmailAndPassword(email: email, password: password);
 
   Future<AsyncValue> signInWithGoogle() async {
     return AsyncValue.guard(() async {

@@ -17,13 +17,13 @@ class SignUpController extends AutoDisposeAsyncNotifier<void> {
   }) async {
     final authService = ref.read(authServiceProvider);
     state = const AsyncValue.loading();
-    state = await authService.signUp(
-      name: name,
-      username: username,
-      email: email,
-      password: password,
-      imageUrl: imageUrl,
-    );
+    state = await AsyncValue.guard(() => authService.signUp(
+          name: name,
+          username: username,
+          email: email,
+          password: password,
+          imageUrl: imageUrl,
+        ));
   }
 }
 
