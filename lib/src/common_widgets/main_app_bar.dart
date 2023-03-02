@@ -51,7 +51,7 @@ class MainAppBar extends ConsumerWidget {
             flex: 10,
             child: GestureDetector(
               onTap: () => ref.read(authRepositoryProvider).signOut(),
-              child: CircleAvatar(),
+              child: const CircleAvatar(),
             ),
           ),
         ],

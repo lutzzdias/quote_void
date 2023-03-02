@@ -8,7 +8,7 @@ import 'package:quote_void/src/features/authentication/presentation/sign_up/sign
 import 'package:quote_void/src/routing/app_router.dart';
 
 class SignUpScreen extends ConsumerWidget {
-  SignUpScreen({super.key});
+  const SignUpScreen({super.key});
 
 // TODO: Improve spacing
   @override

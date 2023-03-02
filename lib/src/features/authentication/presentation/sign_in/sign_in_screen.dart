@@ -11,13 +11,13 @@ import 'package:quote_void/src/features/authentication/presentation/sign_in/sign
 import 'package:quote_void/src/routing/app_router.dart';
 
 class SignInScreen extends ConsumerWidget {
-  SignInScreen({super.key});
+  const SignInScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // TODO: Add custom icons for the buttons
 
-    Future<void> _signIn(String email, String password) async {
+    Future<void> signIn(String email, String password) async {
       await ref
           .read(signInControllerProvider.notifier)
           .signInWithEmailAndPassword(
@@ -54,7 +54,7 @@ class SignInScreen extends ConsumerWidget {
           Expanded(
             flex: 48,
             child: SignInForm(
-              onSubmit: (email, password) => _signIn(email, password),
+              onSubmit: (email, password) => signIn(email, password),
             ),
           ),
           gapH12,

@@ -54,7 +54,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         name: AppRoute.signIn.name,
         pageBuilder: (context, state) => MaterialPage(
           key: state.pageKey,
-          child: SignInScreen(),
+          child: const SignInScreen(),
         ),
       ),
       GoRoute(
@@ -62,7 +62,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         name: AppRoute.signUp.name,
         pageBuilder: (context, state) => MaterialPage(
           key: state.pageKey,
-          child: SignUpScreen(),
+          child: const SignUpScreen(),
         ),
       ),
       GoRoute(

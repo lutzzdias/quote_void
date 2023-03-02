@@ -21,7 +21,7 @@ class SignUpForm extends StatefulWidget {
 class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
   bool _submitted = false;
-  Map<String, String> _values = {
+  final Map<String, String> _values = {
     'name': '',
     'username': '',
     'email': '',
@@ -58,10 +58,10 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
             ),
           ),
-          Spacer(flex: 25),
+          const Spacer(flex: 25),
           TextFormField(
             keyboardType: TextInputType.name,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: 'Name',
             ),
             autovalidateMode: _submitted
