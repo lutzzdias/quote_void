@@ -4,21 +4,13 @@ import 'package:go_router/go_router.dart';
 import 'package:quote_void/src/common_widgets/custom_scaffold.dart';
 import 'package:quote_void/src/common_widgets/text_with_link.dart';
 import 'package:quote_void/src/features/authentication/presentation/sign_up/widgets/sign_up_form.dart';
-import 'package:quote_void/src/features/authentication/presentation/widgets/auth_button.dart';
 import 'package:quote_void/src/features/authentication/presentation/sign_up/sign_up_controller.dart';
 import 'package:quote_void/src/routing/app_router.dart';
 
 class SignUpScreen extends ConsumerWidget {
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-
   SignUpScreen({super.key});
 
-  String get email => _emailController.text;
-  String get password => _passwordController.text;
-
+// TODO: Improve spacing
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return CustomScaffold(
@@ -38,24 +30,16 @@ class SignUpScreen extends ConsumerWidget {
           Expanded(
             flex: 58,
             child: SignUpForm(
-              nameController: _nameController,
-              usernameController: _usernameController,
-              emailController: _emailController,
-              passwordController: _passwordController,
+              onSubmit: (values) =>
+                  ref.read(signUpControllerProvider.notifier).signUp(
+                        name: values['name']!,
+                        username: values['username']!,
+                        email: values['email']!,
+                        password: values['password']!,
+                        // TODO: Get image
+                        imageUrl: values['imageUrl']!,
+                      ),
             ),
-          ),
-          const Spacer(flex: 13),
-          AuthButton(
-            title: 'Sign up',
-            onPressed: () => ref.read(signUpControllerProvider.notifier).signUp(
-                  name: _nameController.text,
-                  username: _usernameController.text,
-                  email: _emailController.text,
-                  password: _passwordController.text,
-                  imageUrl:
-                      'https://images.vexels.com/media/users/3/129616/isolated/preview/fb517f8913bd99cd48ef00facb4a67c0-businessman-avatar-silhouette-by-vexels.png',
-                ),
-            provider: signUpControllerProvider,
           ),
           const Spacer(flex: 10),
           TextWithLink(
