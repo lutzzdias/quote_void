@@ -14,12 +14,15 @@ class SignInController extends AutoDisposeAsyncNotifier<void> {
     required String password,
   }) async {
     state = const AsyncValue.loading();
-    state = await _authRepository.signInWithEmailAndPassword(email, password);
+    state = await AsyncValue.guard(
+      () => _authRepository.signInWithEmailAndPassword(email, password),
+    );
   }
 
   Future<void> signInWithGoogle() async {
     state = const AsyncValue.loading();
-    state = await _authRepository.signInWithGoogle();
+    // TODO: Create user info in firebase
+    state = await AsyncValue.guard(() => _authRepository.signInWithGoogle());
   }
 }
 

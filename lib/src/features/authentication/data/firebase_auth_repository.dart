@@ -12,34 +12,30 @@ class AuthRepository {
   Stream<User?> authStateChanges() => _auth.authStateChanges();
   User? get currentUser => _auth.currentUser;
 
-  Future<AsyncValue> signInWithEmailAndPassword(
+  Future<UserCredential> signInWithEmailAndPassword(
           String email, String password) =>
-      AsyncValue.guard(
-        () =>
-            _auth.signInWithEmailAndPassword(email: email, password: password),
-      );
+      _auth.signInWithEmailAndPassword(email: email, password: password);
 
   Future<UserCredential> signUpWithEmailAndPassword(
           String email, String password) =>
       _auth.createUserWithEmailAndPassword(email: email, password: password);
 
-  Future<AsyncValue> signInWithGoogle() async {
-    return AsyncValue.guard(() async {
-      // Trigger the authentication flow
-      final GoogleSignInAccount? googleUser = await _googleAuth.signIn();
+  Future<UserCredential> signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await _googleAuth.signIn();
 
-      // Obtain the auth details from the request
-      final GoogleSignInAuthentication? googleAuth =
-          await googleUser?.authentication;
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
 
-      // Create a new credential
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
-      );
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
 
-      await _auth.signInWithCredential(credential);
-    });
+    final userCredential = await _auth.signInWithCredential(credential);
+    return userCredential;
   }
 
   // Requires an apple developer account
