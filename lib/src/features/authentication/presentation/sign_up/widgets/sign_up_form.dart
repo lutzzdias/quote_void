@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quote_void/src/common_widgets/password_field.dart';
+import 'package:quote_void/src/widgets/password_field.dart';
 import 'package:quote_void/src/constants/app_sizes.dart';
 import 'package:quote_void/src/constants/theme/app_colors.dart';
 import 'package:quote_void/src/features/authentication/presentation/sign_up/sign_up_controller.dart';

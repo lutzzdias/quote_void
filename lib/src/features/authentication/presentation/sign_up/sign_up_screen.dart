@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:quote_void/src/common_widgets/custom_scaffold.dart';
-import 'package:quote_void/src/common_widgets/text_with_link.dart';
+import 'package:quote_void/src/widgets/custom_scaffold.dart';
+import 'package:quote_void/src/widgets/text_with_link.dart';
 import 'package:quote_void/src/features/authentication/presentation/sign_up/widgets/sign_up_form.dart';
 import 'package:quote_void/src/features/authentication/presentation/sign_up/sign_up_controller.dart';
 import 'package:quote_void/src/routing/app_router.dart';

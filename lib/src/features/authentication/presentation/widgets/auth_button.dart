@@ -1,7 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:quote_void/src/common_widgets/custom_outlined_button.dart';
+import 'package:quote_void/src/widgets/custom_outlined_button.dart';
 import 'package:quote_void/src/utils/async_value_ui.dart';
 
 class AuthButton extends ConsumerWidget {

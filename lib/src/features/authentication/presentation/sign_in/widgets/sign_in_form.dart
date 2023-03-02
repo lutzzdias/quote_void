@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:quote_void/src/common_widgets/password_field.dart';
+import 'package:quote_void/src/widgets/password_field.dart';
 import 'package:quote_void/src/constants/app_sizes.dart';
 import 'package:quote_void/src/constants/theme/app_text_style.dart';
 import 'package:quote_void/src/features/authentication/presentation/sign_in/sign_in_controller.dart';
