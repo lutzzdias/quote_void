@@ -24,17 +24,16 @@ class SignInScreen extends ConsumerWidget {
           );
     }
 
-    // TODO: Improve spacing
     return CustomScaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const Spacer(
-            flex: 12,
+            flex: 25,
           ),
           SizedBox(
-            height: 132,
+            height: MediaQuery.of(context).size.height * 0.15,
             child: Image.asset(
               'assets/logo.png',
               fit: BoxFit.fitHeight,
@@ -47,38 +46,39 @@ class SignInScreen extends ConsumerWidget {
             style: AppTextStyle.title,
           ),
           const Spacer(
-            flex: 15,
+            flex: 25,
           ),
-          Expanded(
-            flex: 48,
-            child: SignInForm(
-              onSubmit: (email, password) => signIn(
-                email: email,
-                password: password,
-              ),
+          SignInForm(
+            onSubmit: (email, password) => signIn(
+              email: email,
+              password: password,
             ),
           ),
-          gapH12,
-          const Text(
-            'Or',
-            style: AppTextStyle.bodyTranslucent,
-            textAlign: TextAlign.center,
-          ),
-          gapH12,
-          CustomOutlinedIconButton(
-            title: 'Google',
-            icon: Icons.android,
-            onPressed: () => signIn(),
-          ),
-          gapH16,
-          CustomOutlinedIconButton(
-            title: 'Apple ID',
-            icon: Icons.apple,
-            onPressed: () => debugPrint(
-                'This requires an apple developer account (100U\$/yr)'),
+          const Spacer(flex: 20),
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: CustomOutlinedIconButton(
+                  title: 'Google',
+                  icon: Icons.android,
+                  onPressed: () => signIn(),
+                ),
+              ),
+              gapW16,
+              Expanded(
+                child: CustomOutlinedIconButton(
+                  title: 'Apple ID',
+                  icon: Icons.apple,
+                  onPressed: () => debugPrint(
+                      'This requires an apple developer account (100U\$/yr)'),
+                ),
+              ),
+            ],
           ),
           const Spacer(
-            flex: 20,
+            flex: 25,
           ),
           TextWithLink(
             text: 'Don\'t have an account? ',
