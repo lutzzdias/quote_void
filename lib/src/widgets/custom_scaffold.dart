@@ -1,12 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:quote_void/src/constants/app_sizes.dart';
 import 'package:quote_void/src/constants/theme/app_colors.dart';
-
-typedef ResponsiveBuilder = Widget Function(
-  BuildContext context,
-  Size size,
-);
 
 class CustomScaffold extends StatelessWidget {
   final Color? color;
