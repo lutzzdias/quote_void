@@ -10,22 +10,23 @@ class SignInController extends AutoDisposeAsyncNotifier<void> {
   FutureOr<void> build() => _authService = ref.read(authServiceProvider);
 
   Future<void> signIn({
-    String? email,
-    String? password,
+    required String email,
+    required String password,
   }) async {
     state = const AsyncValue.loading();
-    if (email != null && password != null) {
-      state = await AsyncValue.guard(
-        () => _authService.signInWithEmailAndPassword(
-          email: email,
-          password: password,
-        ),
-      );
-    } else {
-      state = await AsyncValue.guard(
-        () => _authService.signInWithGoogle(),
-      );
-    }
+    state = await AsyncValue.guard(
+      () => _authService.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      ),
+    );
+  }
+
+  Future<void> signInWithGoogle() async {
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(
+      () => _authService.signInWithGoogle(),
+    );
   }
 }
 
