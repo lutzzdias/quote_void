@@ -16,6 +16,8 @@ class AllQuotesScreen extends StatelessWidget {
     return CustomScaffold(
       body: Column(
         children: [
+          // TODO: Setup customScrollView in order to make the entire screen scroll
+          // Make AppBar disappear but snap back into view as soon as the user scrolls upward
           const MainAppBar(showArrowBack: false),
           SizedBox(
             // TODO: Use a constant (may need to create one)
