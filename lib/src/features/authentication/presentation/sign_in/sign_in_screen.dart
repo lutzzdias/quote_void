@@ -17,24 +17,28 @@ class SignInScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // TODO: Add custom icons for the buttons
 
-    Future<void> signIn({String? email, String? password}) async {
+    Future<void> signIn(
+        {required String email, required String password}) async {
       await ref.read(signInControllerProvider.notifier).signIn(
             email: email,
             password: password,
           );
     }
 
-    // TODO: Improve spacing
+    Future<void> signInWithGoogle() async {
+      await ref.read(signInControllerProvider.notifier).signInWithGoogle();
+    }
+
     return CustomScaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const Spacer(
-            flex: 12,
+            flex: 25,
           ),
           SizedBox(
-            height: 132,
+            height: MediaQuery.of(context).size.height * 0.15,
             child: Image.asset(
               'assets/logo.png',
               fit: BoxFit.fitHeight,
@@ -47,46 +51,56 @@ class SignInScreen extends ConsumerWidget {
             style: AppTextStyle.title,
           ),
           const Spacer(
-            flex: 15,
+            flex: 25,
           ),
-          Expanded(
-            flex: 48,
-            child: SignInForm(
-              onSubmit: (email, password) => signIn(
-                email: email,
-                password: password,
+          Consumer(
+            builder: (_, ref, __) => Expanded(
+              flex: 200,
+              child: Column(
+                children: [
+                  SignInForm(
+                    onSubmit: (email, password) => signIn(
+                      email: email,
+                      password: password,
+                    ),
+                  ),
+                  const Spacer(flex: 20),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: CustomOutlinedIconButton(
+                          title: 'Google',
+                          icon: Icons.android,
+                          onPressed: () => signInWithGoogle(),
+                        ),
+                      ),
+                      gapW16,
+                      Expanded(
+                        child: CustomOutlinedIconButton(
+                          title: 'Apple ID',
+                          icon: Icons.apple,
+                          onPressed: () => debugPrint(
+                              'This requires an apple developer account (100U\$/yr)'),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Spacer(
+                    flex: 25,
+                  ),
+                  TextWithLink(
+                    text: 'Don\'t have an account? ',
+                    linkText: 'Sign up',
+                    onTap: () => context.goNamed(AppRoute.signUp.name),
+                  ),
+                  const Spacer(
+                    flex: 5,
+                  ),
+                ],
               ),
             ),
-          ),
-          gapH12,
-          const Text(
-            'Or',
-            style: AppTextStyle.bodyTranslucent,
-            textAlign: TextAlign.center,
-          ),
-          gapH12,
-          CustomOutlinedIconButton(
-            title: 'Google',
-            icon: Icons.android,
-            onPressed: () => signIn(),
-          ),
-          gapH16,
-          CustomOutlinedIconButton(
-            title: 'Apple ID',
-            icon: Icons.apple,
-            onPressed: () => debugPrint(
-                'This requires an apple developer account (100U\$/yr)'),
-          ),
-          const Spacer(
-            flex: 20,
-          ),
-          TextWithLink(
-            text: 'Don\'t have an account? ',
-            linkText: 'Sign up',
-            onTap: () => context.goNamed(AppRoute.signUp.name),
-          ),
-          const Spacer(
-            flex: 5,
           ),
         ],
       ),
