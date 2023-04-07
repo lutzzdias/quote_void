@@ -62,5 +62,11 @@
 		</dict>
 	</array>
 	<!-- End of the Google Sign-in Section -->
+
+	<!-- Image picker section -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Needed in order to access your gallery for you to choose your profile picture</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Needed in order to access your camera for you to take a picture for your profile</string>	
 </dict>
 </plist>
