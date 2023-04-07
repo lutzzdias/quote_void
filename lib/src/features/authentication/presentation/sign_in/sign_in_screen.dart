@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quote_void/src/utils/async_value_ui.dart';
 import 'package:quote_void/src/widgets/custom_outlined_icon_button.dart';
 import 'package:quote_void/src/widgets/custom_scaffold.dart';
 import 'package:quote_void/src/widgets/text_with_link.dart';
@@ -53,54 +54,72 @@ class SignInScreen extends ConsumerWidget {
           const Spacer(
             flex: 25,
           ),
+          // TODO: Modularize following widget -> perhaps deal with error and loading states differently
           Consumer(
-            builder: (_, ref, __) => Expanded(
-              flex: 200,
-              child: Column(
-                children: [
-                  SignInForm(
-                    onSubmit: (email, password) => signIn(
-                      email: email,
-                      password: password,
-                    ),
-                  ),
-                  const Spacer(flex: 20),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            builder: (_, ref, __) {
+              ref.listen<VoidAsyncValue>(
+                signInControllerProvider,
+                (_, state) => state.showSnackBarOnError(context),
+              );
+              final state = ref.watch(signInControllerProvider);
+              return state.when(
+                skipError: true,
+                data: (_) => Expanded(
+                  flex: 200,
+                  child: Column(
                     children: [
-                      Expanded(
-                        child: CustomOutlinedIconButton(
-                          title: 'Google',
-                          icon: Icons.android,
-                          onPressed: () => signInWithGoogle(),
+                      SignInForm(
+                        onSubmit: (email, password) => signIn(
+                          email: email,
+                          password: password,
                         ),
                       ),
-                      gapW16,
-                      Expanded(
-                        child: CustomOutlinedIconButton(
-                          title: 'Apple ID',
-                          icon: Icons.apple,
-                          onPressed: () => debugPrint(
-                              'This requires an apple developer account (100U\$/yr)'),
-                        ),
+                      const Spacer(flex: 20),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: CustomOutlinedIconButton(
+                              title: 'Google',
+                              icon: Icons.android,
+                              onPressed: () => signInWithGoogle(),
+                            ),
+                          ),
+                          gapW16,
+                          Expanded(
+                            child: CustomOutlinedIconButton(
+                              title: 'Apple ID',
+                              icon: Icons.apple,
+                              onPressed: () => debugPrint(
+                                  'This requires an apple developer account (100U\$/yr)'),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const Spacer(
+                        flex: 25,
+                      ),
+                      TextWithLink(
+                        text: 'Don\'t have an account? ',
+                        linkText: 'Sign up',
+                        onTap: () => context.goNamed(AppRoute.signUp.name),
+                      ),
+                      const Spacer(
+                        flex: 5,
                       ),
                     ],
                   ),
-                  const Spacer(
-                    flex: 25,
+                ),
+                error: (error, stackTrace) => Container(),
+                loading: () => const Expanded(
+                  flex: 200,
+                  child: Center(
+                    child: CircularProgressIndicator(),
                   ),
-                  TextWithLink(
-                    text: 'Don\'t have an account? ',
-                    linkText: 'Sign up',
-                    onTap: () => context.goNamed(AppRoute.signUp.name),
-                  ),
-                  const Spacer(
-                    flex: 5,
-                  ),
-                ],
-              ),
-            ),
+                ),
+              );
+            },
           ),
         ],
       ),
