@@ -20,7 +20,7 @@ class SignUpScreen extends ConsumerWidget {
           Expanded(
             flex: 10,
             child: Image.asset(
-              'assets/logo.png',
+              'assets/images/logo.png',
               fit: BoxFit.fitHeight,
             ),
           ),

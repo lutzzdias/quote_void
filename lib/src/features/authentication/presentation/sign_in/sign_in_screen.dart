@@ -40,7 +40,7 @@ class SignInScreen extends ConsumerWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.15,
             child: Image.asset(
-              'assets/logo.png',
+              'assets/images/logo.png',
               fit: BoxFit.fitHeight,
             ),
           ),
