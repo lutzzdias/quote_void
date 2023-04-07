@@ -12,7 +12,7 @@ class CustomOutlinedButton extends StatelessWidget {
     super.key,
     required this.title,
     required this.onPressed,
-    required this.isLoading,
+    this.isLoading = false,
   });
 
   @override
