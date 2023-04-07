@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:quote_void/src/widgets/password_field.dart';
 import 'package:quote_void/src/constants/app_sizes.dart';
 import 'package:quote_void/src/constants/theme/app_colors.dart';
@@ -20,6 +23,7 @@ class SignUpForm extends StatefulWidget {
 class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
   bool _submitted = false;
+  XFile? profilePic;
   final Map<String, String> _values = {
     'name': '',
     'username': '',
@@ -36,6 +40,12 @@ class _SignUpFormState extends State<SignUpForm> {
     }
   }
 
+  Future<void> pickImage() async {
+    final ImagePicker picker = ImagePicker();
+    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+    setState(() => profilePic = pickedImage);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -46,14 +56,13 @@ class _SignUpFormState extends State<SignUpForm> {
           Expanded(
             flex: 75,
             child: GestureDetector(
-              onTap: () => debugPrint('Click on avatar placeholder'),
-              child: const CircleAvatar(
+              onTap: () => pickImage(),
+              child: CircleAvatar(
                 backgroundColor: AppColors.black,
-                child: Icon(
-                  Icons.person_rounded,
-                  color: AppColors.white,
-                  size: Sizes.p48,
-                ),
+                backgroundImage: profilePic != null
+                    ? FileImage(File(profilePic!.path))
+                    : const AssetImage('assets/images/default-profile-pic.png')
+                        as ImageProvider,
               ),
             ),
           ),
