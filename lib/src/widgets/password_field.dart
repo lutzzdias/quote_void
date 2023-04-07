@@ -24,7 +24,7 @@ class _PasswordFieldState extends State<PasswordField> {
   Widget build(BuildContext context) {
     return TextFormField(
       keyboardType: TextInputType.visiblePassword,
-      obscureText: isVisible,
+      obscureText: !isVisible,
       decoration: InputDecoration(
         hintText: 'Password',
         suffixIcon: GestureDetector(
