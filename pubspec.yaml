@@ -32,3 +32,8 @@ flutter:
 
   assets:
     - assets/
+
+  fonts:
+    - family: AuthIcons
+      fonts:
+        - asset: assets/fonts/AuthIcons.ttf

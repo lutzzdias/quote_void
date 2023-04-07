@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quote_void/src/constants/icons/auth_icons.dart';
 import 'package:quote_void/src/utils/async_value_ui.dart';
 import 'package:quote_void/src/widgets/custom_outlined_icon_button.dart';
 import 'package:quote_void/src/widgets/custom_scaffold.dart';
@@ -82,7 +83,7 @@ class SignInScreen extends ConsumerWidget {
                           Expanded(
                             child: CustomOutlinedIconButton(
                               title: 'Google',
-                              icon: Icons.android,
+                              icon: AuthIcons.google,
                               onPressed: () => signInWithGoogle(),
                             ),
                           ),
@@ -90,7 +91,7 @@ class SignInScreen extends ConsumerWidget {
                           Expanded(
                             child: CustomOutlinedIconButton(
                               title: 'Apple ID',
-                              icon: Icons.apple,
+                              icon: AuthIcons.apple,
                               onPressed: () => debugPrint(
                                   'This requires an apple developer account (100U\$/yr)'),
                             ),
