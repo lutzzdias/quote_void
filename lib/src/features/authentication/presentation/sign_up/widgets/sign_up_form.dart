@@ -57,6 +57,7 @@ class _SignUpFormState extends State<SignUpForm> {
             flex: 75,
             child: GestureDetector(
               onTap: () => pickImage(),
+              // TODO: Fix circleAvatar image fit
               child: CircleAvatar(
                 backgroundColor: AppColors.black,
                 backgroundImage: profilePic != null
