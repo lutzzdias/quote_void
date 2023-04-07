@@ -5,7 +5,6 @@ import 'package:quote_void/src/constants/theme/app_colors.dart';
 import 'package:quote_void/src/features/authentication/presentation/sign_up/sign_up_controller.dart';
 import 'package:quote_void/src/features/authentication/presentation/widgets/auth_button.dart';
 
-// TODO: Convert from stateful widget to riverpod solution
 class SignUpForm extends StatefulWidget {
   const SignUpForm({
     super.key,
@@ -143,7 +142,6 @@ class _SignUpFormState extends State<SignUpForm> {
               }
             },
           ),
-          // TODO: Create logic to have button in the screen, not on this widget
           const Spacer(flex: 13),
           AuthButton(
             title: 'Sign up',

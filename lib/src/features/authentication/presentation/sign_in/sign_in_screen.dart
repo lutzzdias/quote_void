@@ -17,8 +17,6 @@ class SignInScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // TODO: Add custom icons for the buttons
-
     Future<void> signIn(
         {required String email, required String password}) async {
       await ref.read(signInControllerProvider.notifier).signIn(

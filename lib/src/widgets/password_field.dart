@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class PasswordField extends StatefulWidget {
-  // TODO: Add state management and possibility of toggle text visibility
   const PasswordField({
     super.key,
     required this.autovalidateMode,
