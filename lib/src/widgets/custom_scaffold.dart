@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:quote_void/src/constants/app_sizes.dart';
 import 'package:quote_void/src/constants/theme/app_colors.dart';
 
+// !!! TODO: Change custom scaffold and use a better responsive approach
+
 class CustomScaffold extends StatelessWidget {
   final Color? color;
   final PreferredSizeWidget? appBar;
