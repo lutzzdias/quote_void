@@ -1,14 +1,15 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:quote_void/src/utils/image_helper.dart';
 import 'package:quote_void/src/widgets/password_field.dart';
 import 'package:quote_void/src/constants/app_sizes.dart';
 import 'package:quote_void/src/constants/theme/app_colors.dart';
 import 'package:quote_void/src/features/authentication/presentation/sign_up/sign_up_controller.dart';
 import 'package:quote_void/src/features/authentication/presentation/widgets/auth_button.dart';
 
-class SignUpForm extends StatefulWidget {
+class SignUpForm extends ConsumerStatefulWidget {
   const SignUpForm({
     super.key,
     required this.onSubmit,
@@ -17,13 +18,14 @@ class SignUpForm extends StatefulWidget {
   final ValueChanged<Map<String, String>> onSubmit;
 
   @override
-  State<SignUpForm> createState() => _SignUpFormState();
+  ConsumerState<SignUpForm> createState() => _SignUpFormState();
 }
 
-class _SignUpFormState extends State<SignUpForm> {
+class _SignUpFormState extends ConsumerState<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
   bool _submitted = false;
-  XFile? profilePic;
+  File? profilePic;
+
   final Map<String, String> _values = {
     'name': '',
     'username': '',
@@ -41,9 +43,14 @@ class _SignUpFormState extends State<SignUpForm> {
   }
 
   Future<void> pickImage() async {
-    final ImagePicker picker = ImagePicker();
-    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
-    setState(() => profilePic = pickedImage);
+    final imageHelper = ref.watch(imageHelperProvider);
+    final file = await imageHelper.pickImage();
+    if (file != null) {
+      final croppedFile = await imageHelper.cropImage(file: file);
+      if (croppedFile != null) {
+        setState(() => profilePic = File(croppedFile.path));
+      }
+    }
   }
 
   @override
@@ -53,17 +60,21 @@ class _SignUpFormState extends State<SignUpForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Expanded(
-            flex: 75,
-            child: GestureDetector(
-              onTap: () => pickImage(),
-              // TODO: Fix circleAvatar image fit
-              child: CircleAvatar(
-                backgroundColor: AppColors.black,
-                backgroundImage: profilePic != null
-                    ? FileImage(File(profilePic!.path))
-                    : const AssetImage('assets/images/default-profile-pic.png')
-                        as ImageProvider,
+          GestureDetector(
+            onTap: () => pickImage(),
+            // TODO: Fix circleAvatar image fit
+            child: Center(
+              child: FittedBox(
+                fit: BoxFit.contain,
+                child: CircleAvatar(
+                  radius: Sizes.p80,
+                  backgroundColor: AppColors.black,
+                  backgroundImage: profilePic != null
+                      ? FileImage(File(profilePic!.path))
+                      : const AssetImage(
+                              'assets/images/default-profile-pic.png')
+                          as ImageProvider,
+                ),
               ),
             ),
           ),

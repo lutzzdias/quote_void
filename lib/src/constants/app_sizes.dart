@@ -10,6 +10,7 @@ class Sizes {
   static const p32 = 32.0;
   static const p48 = 48.0;
   static const p64 = 64.0;
+  static const p80 = 80.0;
 }
 
 const gapW4 = SizedBox(width: Sizes.p4);
