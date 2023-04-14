@@ -62,7 +62,6 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
         children: [
           GestureDetector(
             onTap: () => pickImage(),
-            // TODO: Fix circleAvatar image fit
             child: Center(
               child: FittedBox(
                 fit: BoxFit.contain,
@@ -79,6 +78,7 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
             ),
           ),
           const Spacer(flex: 25),
+          // ! TODO: Fix validation errors causing overflow
           TextFormField(
             keyboardType: TextInputType.name,
             decoration: const InputDecoration(
