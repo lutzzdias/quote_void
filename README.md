@@ -1,9 +1,11 @@
 # Quote Void
 Short project description
 
+TODO: Add a few screenshots here
+
 ## Table of Contents
 - [Installation](#installation)
-- [Usage](#usage)
+- [Stack](#stack)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -14,8 +16,12 @@ Explain how to install the project and any dependencies required. If the project
 installation instructions
 ```
 
-## Usage
-Provide examples on how to use the project. Include screenshots if applicable.
+## Stack
+Describe the stack used, it should cover:
+- Frontend language and framework
+- Backend language and frameword (or BaaS name eg. Firebase)
+- Super important packages used (eg. Riverpod)
+- External APIs used
 
 ## Contributing
 Explain how others can contribute to the project. Include guidelines on how to submit issues and pull requests.
