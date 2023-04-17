@@ -30,85 +30,88 @@ class SignInScreen extends ConsumerWidget {
     }
 
     return Scaffold(
-      body: ResponsiveCenter(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.15,
-              child: Image.asset(
-                'assets/images/logo.png',
-                fit: BoxFit.fitHeight,
-              ),
-            ),
-            gapH12,
-            const Text(
-              'Quote Void',
-              textAlign: TextAlign.center,
-              style: AppTextStyle.title,
-            ),
-            // TODO: Modularize following widget -> perhaps deal with error and loading states differently
-            gapH64,
-            Consumer(
-              builder: (_, ref, __) {
-                ref.listen<VoidAsyncValue>(
-                  signInControllerProvider,
-                  (_, state) => state.showSnackBarOnError(context),
-                );
-                final state = ref.watch(signInControllerProvider);
-                return state.when(
-                  skipError: true,
-                  data: (_) => Column(
-                    children: [
-                      SignInForm(
-                        onSubmit: (email, password) => signIn(
-                          email: email,
-                          password: password,
-                        ),
-                      ),
-                      gapH24,
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: CustomOutlinedIconButton(
-                              title: 'Google',
-                              icon: AuthIcons.google,
-                              onPressed: () => signInWithGoogle(),
-                            ),
-                          ),
-                          gapW16,
-                          Expanded(
-                            child: CustomOutlinedIconButton(
-                              title: 'Apple ID',
-                              icon: AuthIcons.apple,
-                              onPressed: () => debugPrint(
-                                  'This requires an apple developer account (100U\$/yr)'),
-                            ),
-                          ),
-                        ],
-                      ),
-                      gapH64,
-                      TextWithLink(
-                        text: 'Don\'t have an account? ',
-                        linkText: 'Sign up',
-                        onTap: () => context.goNamed(AppRoute.signUp.name),
-                      ),
-                    ],
-                  ),
-                  error: (error, stackTrace) => Container(),
-                  loading: () => const Expanded(
-                    flex: 200,
-                    child: Center(
-                      child: CircularProgressIndicator(),
+      body: SafeArea(
+        child: Center(
+          child: SingleChildScrollView(
+            child: ResponsiveCenter(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.15,
+                    child: Image.asset(
+                      'assets/images/logo.png',
+                      fit: BoxFit.fitHeight,
                     ),
                   ),
-                );
-              },
+                  gapH12,
+                  const Text(
+                    'Quote Void',
+                    textAlign: TextAlign.center,
+                    style: AppTextStyle.title,
+                  ),
+                  // TODO: Modularize following widget -> perhaps deal with error and loading states differently
+                  gapH64,
+                  Consumer(
+                    builder: (_, ref, __) {
+                      ref.listen<VoidAsyncValue>(
+                        signInControllerProvider,
+                        (_, state) => state.showSnackBarOnError(context),
+                      );
+                      final state = ref.watch(signInControllerProvider);
+                      return state.when(
+                        skipError: true,
+                        data: (_) => Column(
+                          children: [
+                            SignInForm(
+                              onSubmit: (email, password) => signIn(
+                                email: email,
+                                password: password,
+                              ),
+                            ),
+                            gapH24,
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: CustomOutlinedIconButton(
+                                    title: 'Google',
+                                    icon: AuthIcons.google,
+                                    onPressed: () => signInWithGoogle(),
+                                  ),
+                                ),
+                                gapW16,
+                                Expanded(
+                                  child: CustomOutlinedIconButton(
+                                    title: 'Apple ID',
+                                    icon: AuthIcons.apple,
+                                    onPressed: () => debugPrint(
+                                        'This requires an apple developer account (100U\$/yr)'),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            gapH64,
+                            TextWithLink(
+                              text: 'Don\'t have an account? ',
+                              linkText: 'Sign up',
+                              onTap: () =>
+                                  context.goNamed(AppRoute.signUp.name),
+                            ),
+                          ],
+                        ),
+                        error: (_, __) => Container(),
+                        loading: () => const Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
-          ],
+          ),
         ),
       ),
     );
