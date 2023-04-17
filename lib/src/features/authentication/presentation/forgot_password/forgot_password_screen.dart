@@ -107,7 +107,6 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(forgotPasswordControllerProvider);
     return Scaffold(
       body: SafeArea(
         child: ResponsiveCenter(
@@ -162,7 +161,8 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
               gapH32,
               CustomOutlinedButton(
                 title: 'Send link',
-                isLoading: state.isLoading,
+                isLoading:
+                    ref.watch(forgotPasswordControllerProvider).isLoading,
                 onPressed: () => _submit(),
               ),
               gapH64,
