@@ -15,29 +15,35 @@ class SignUpScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      body: ResponsiveCenter(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            SignUpForm(
-              onSubmit: (values) =>
-                  ref.read(signUpControllerProvider.notifier).signUp(
-                        name: values['name']!,
-                        username: values['username']!,
-                        email: values['email']!,
-                        password: values['password']!,
-                        // TODO: Get image
-                        imageUrl: values['imageUrl']!,
-                      ),
+      body: SafeArea(
+        child: Center(
+          child: SingleChildScrollView(
+            child: ResponsiveCenter(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  SignUpForm(
+                    onSubmit: (values) =>
+                        ref.read(signUpControllerProvider.notifier).signUp(
+                              name: values['name']!,
+                              username: values['username']!,
+                              email: values['email']!,
+                              password: values['password']!,
+                              // TODO: Get image
+                              imageUrl: values['imageUrl']!,
+                            ),
+                  ),
+                  gapH64,
+                  TextWithLink(
+                    text: 'Already have an account? ',
+                    linkText: 'Sign in',
+                    onTap: () => context.goNamed(AppRoute.signIn.name),
+                  ),
+                ],
+              ),
             ),
-            gapH64,
-            TextWithLink(
-              text: 'Already have an account? ',
-              linkText: 'Sign in',
-              onTap: () => context.goNamed(AppRoute.signIn.name),
-            ),
-          ],
+          ),
         ),
       ),
     );
