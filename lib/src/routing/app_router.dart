@@ -46,7 +46,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
           key: state.pageKey,
           // fullscreenDialog -> makes the appBar have a close button instead of a back button
           // on iOS the screen is not closeable with the swipe gesture
-          child: const AllQuotesScreen(),
+          child: AllQuotesScreen(),
         ),
       ),
       GoRoute(

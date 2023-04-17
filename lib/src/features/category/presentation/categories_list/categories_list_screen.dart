@@ -5,6 +5,7 @@ import 'package:quote_void/src/constants/app_sizes.dart';
 import 'package:quote_void/src/constants/theme/app_text_style.dart';
 import 'package:quote_void/src/features/category/domain/category.dart';
 import 'package:quote_void/src/features/category/presentation/categories_list/widgets/category_list.dart';
+import 'package:quote_void/src/widgets/responsive_center.dart';
 import 'package:uuid/uuid.dart';
 
 class CategoriesListScreen extends StatelessWidget {
@@ -20,23 +21,25 @@ class CategoriesListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScaffold(
-      body: Column(
-        children: [
-          const MainAppBar(),
-          gapH12,
-          const Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              'Categories',
-              style: AppTextStyle.title,
+    return Scaffold(
+      body: ResponsiveCenter(
+        child: Column(
+          children: [
+            const MainAppBar(),
+            gapH12,
+            const Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Categories',
+                style: AppTextStyle.title,
+              ),
             ),
-          ),
-          gapH12,
-          Expanded(
-            child: CategoryList(categories: categories),
-          ),
-        ],
+            gapH12,
+            Expanded(
+              child: CategoryList(categories: categories),
+            ),
+          ],
+        ),
       ),
     );
   }
