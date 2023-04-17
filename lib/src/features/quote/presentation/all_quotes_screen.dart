@@ -34,9 +34,9 @@ class AllQuotesScreen extends StatelessWidget {
             slivers: [
               // Make AppBar disappear but snap back into view as soon as the user scrolls upward
               const SliverToBoxAdapter(child: MainAppBar(showArrowBack: false)),
-              SliverToBoxAdapter(child: gapH12),
+              const SliverToBoxAdapter(child: gapH12),
               SliverGrid(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 2.5,
                 ),
@@ -47,7 +47,7 @@ class AllQuotesScreen extends StatelessWidget {
                   childCount: categories.length,
                 ),
               ),
-              SliverToBoxAdapter(child: gapH8),
+              const SliverToBoxAdapter(child: gapH8),
               const SliverToBoxAdapter(
                 child: Align(
                   alignment: Alignment.centerRight,
@@ -57,7 +57,7 @@ class AllQuotesScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SliverToBoxAdapter(child: gapH4),
+              const SliverToBoxAdapter(child: gapH4),
               const SliverToBoxAdapter(
                 child: Divider(
                   color: AppColors.black,
@@ -94,7 +94,7 @@ class AllQuotesScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              SliverToBoxAdapter(child: gapH12),
+              const SliverToBoxAdapter(child: gapH12),
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {

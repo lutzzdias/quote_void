@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:quote_void/src/widgets/custom_scaffold.dart';
 import 'package:quote_void/src/widgets/main_app_bar.dart';
 import 'package:quote_void/src/constants/app_sizes.dart';
 import 'package:quote_void/src/constants/theme/app_text_style.dart';

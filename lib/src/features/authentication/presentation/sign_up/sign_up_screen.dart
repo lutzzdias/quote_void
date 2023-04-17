@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quote_void/src/constants/app_sizes.dart';
-import 'package:quote_void/src/widgets/custom_scaffold.dart';
 import 'package:quote_void/src/widgets/responsive_center.dart';
 import 'package:quote_void/src/widgets/text_with_link.dart';
 import 'package:quote_void/src/features/authentication/presentation/sign_up/widgets/sign_up_form.dart';
