@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quote_void/src/utils/image_helper.dart';
@@ -8,6 +9,7 @@ import 'package:quote_void/src/constants/app_sizes.dart';
 import 'package:quote_void/src/constants/theme/app_colors.dart';
 import 'package:quote_void/src/features/authentication/presentation/sign_up/sign_up_controller.dart';
 import 'package:quote_void/src/features/authentication/presentation/widgets/auth_button.dart';
+import 'package:uuid/uuid.dart';
 
 class SignUpForm extends ConsumerStatefulWidget {
   const SignUpForm({
@@ -24,20 +26,28 @@ class SignUpForm extends ConsumerStatefulWidget {
 class _SignUpFormState extends ConsumerState<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
   bool _submitted = false;
-  File? profilePic;
+  File? _profilePic;
 
   final Map<String, String> _values = {
     'name': '',
     'username': '',
     'email': '',
     'password': '',
-    'imageUrl':
-        'https://images.vexels.com/media/users/3/129616/isolated/preview/fb517f8913bd99cd48ef00facb4a67c0-businessman-avatar-silhouette-by-vexels.png',
+    'imageUrl': '',
   };
 
   Future<void> _submit() async {
     setState(() => _submitted = true);
     if (_formKey.currentState!.validate()) {
+      // TODO: Move this logic to a more appropriate place
+      TaskSnapshot task = await FirebaseStorage.instance
+          .ref()
+          .child('profile-pics')
+          .child(_values['username']!)
+          .child(const Uuid().v4())
+          .putFile(_profilePic!);
+      final url = await task.ref.getDownloadURL();
+      _values['imageUrl'] = url;
       widget.onSubmit(_values);
     }
   }
@@ -48,7 +58,7 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
     if (file != null) {
       final croppedFile = await imageHelper.cropImage(file: file);
       if (croppedFile != null) {
-        setState(() => profilePic = File(croppedFile.path));
+        setState(() => _profilePic = File(croppedFile.path));
       }
     }
   }
@@ -60,6 +70,7 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          // TODO: Add form validation to image
           GestureDetector(
             onTap: () => pickImage(),
             child: Center(
@@ -68,11 +79,13 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
                 child: CircleAvatar(
                   radius: Sizes.p80,
                   backgroundColor: AppColors.black,
-                  backgroundImage: profilePic != null
-                      ? FileImage(File(profilePic!.path))
-                      : const AssetImage(
+                  backgroundImage: _profilePic == null
+                      ? const AssetImage(
                               'assets/images/default-profile-pic.png')
-                          as ImageProvider,
+                          as ImageProvider
+                      : FileImage(
+                          File(_profilePic!.path),
+                        ),
                 ),
               ),
             ),
