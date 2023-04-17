@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:quote_void/src/constants/theme/app_colors.dart';
 import 'package:quote_void/src/features/authentication/presentation/forgot_password/forgot_password_controller.dart';
 import 'package:quote_void/src/widgets/custom_outlined_button.dart';
+import 'package:quote_void/src/widgets/default_snack_bar.dart';
 import 'package:quote_void/src/widgets/responsive_center.dart';
 import 'package:quote_void/src/widgets/text_with_link.dart';
 import 'package:quote_void/src/constants/app_sizes.dart';
@@ -30,76 +30,19 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
           .read(forgotPasswordControllerProvider.notifier)
           .resetPassword(email: _email);
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          // TODO: Create snackbar widget
-          !result.hasError
-              ? SnackBar(
-                  backgroundColor: AppColors.white,
-                  showCloseIcon: true,
-                  padding: const EdgeInsets.symmetric(
-                    vertical: Sizes.p8,
-                    horizontal: Sizes.p16,
-                  ),
-                  content: Row(
-                    children: [
-                      const Icon(
-                        Icons.email_outlined,
-                        color: Colors.black,
-                      ),
-                      gapW12,
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text(
-                              'Email sent',
-                              style: AppTextStyle.subtitleBold,
-                            ),
-                            Text(
-                              'Check your email',
-                              style: AppTextStyle.bodyTranslucent,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              : SnackBar(
-                  backgroundColor: AppColors.white,
-                  showCloseIcon: true,
-                  padding: const EdgeInsets.symmetric(
-                    vertical: Sizes.p8,
-                    horizontal: Sizes.p16,
-                  ),
-                  content: Row(
-                    children: [
-                      const Icon(
-                        Icons.error,
-                        color: Colors.black,
-                      ),
-                      gapW12,
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              'Error',
-                              style: AppTextStyle.subtitleBold,
-                            ),
-                            Text(
-                              result.asError!.error.toString(),
-                              style: AppTextStyle.bodyTranslucent,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-        );
+        !result.hasError
+            ? DefaultSnackBar.show(
+                context: context,
+                title: 'Email sent',
+                icon: Icons.email_outlined,
+                body: 'Check your email',
+              )
+            : DefaultSnackBar.show(
+                context: context,
+                title: 'Error',
+                icon: Icons.email_outlined,
+                body: result.asError!.error.toString(),
+              );
         if (!result.hasError) context.goNamed(AppRoute.signIn.name);
       }
     }
