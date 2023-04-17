@@ -13,50 +13,52 @@ class ForgotPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ResponsiveCenter(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              children: const [
-                Icon(
-                  Icons.lock,
-                  size: Sizes.p32,
-                ),
-                gapW8,
-                Text(
-                  'Forgot password?',
-                  style: AppTextStyle.title,
-                )
-              ],
-            ),
-            gapH32,
-            const Text(
-              'Please enter your email address, so we can send you a link to reset your password.',
-              style: AppTextStyle.body,
-            ),
-            gapH24,
-            const TextField(
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                hintText: 'Email address',
+      body: SafeArea(
+        child: ResponsiveCenter(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                children: const [
+                  Icon(
+                    Icons.lock,
+                    size: Sizes.p32,
+                  ),
+                  gapW8,
+                  Text(
+                    'Forgot password?',
+                    style: AppTextStyle.title,
+                  )
+                ],
               ),
-            ),
-            gapH32,
-            CustomOutlinedButton(
-              title: 'Send link',
-              isLoading: false,
-              // TODO: implement send recover link logic
-              onPressed: () => debugPrint('Click on send link'),
-            ),
-            gapH12,
-            TextWithLink(
-              text: 'Return to ',
-              linkText: 'Sign in',
-              onTap: () => context.goNamed(AppRoute.signIn.name),
-            ),
-          ],
+              gapH32,
+              const Text(
+                'Please enter your email address, so we can send you a link to reset your password.',
+                style: AppTextStyle.body,
+              ),
+              gapH24,
+              const TextField(
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  hintText: 'Email address',
+                ),
+              ),
+              gapH32,
+              CustomOutlinedButton(
+                title: 'Send link',
+                isLoading: false,
+                // TODO: implement send recover link logic
+                onPressed: () => debugPrint('Click on send link'),
+              ),
+              gapH64,
+              TextWithLink(
+                text: 'Return to ',
+                linkText: 'Sign in',
+                onTap: () => context.goNamed(AppRoute.signIn.name),
+              ),
+            ],
+          ),
         ),
       ),
     );
