@@ -77,8 +77,7 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
               ),
             ),
           ),
-          const Spacer(flex: 25),
-          // ! TODO: Fix validation errors causing overflow
+          gapH32,
           TextFormField(
             keyboardType: TextInputType.name,
             decoration: const InputDecoration(
@@ -163,7 +162,7 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
               }
             },
           ),
-          const Spacer(flex: 13),
+          gapH32,
           AuthButton(
             title: 'Sign up',
             onPressed: () => _submit(),
