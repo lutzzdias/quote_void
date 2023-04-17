@@ -29,7 +29,6 @@ class SignUpScreen extends ConsumerWidget {
                               username: values['username']!,
                               email: values['email']!,
                               password: values['password']!,
-                              // TODO: Get image
                               imageUrl: values['imageUrl']!,
                             ),
                   ),
