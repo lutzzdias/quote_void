@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:quote_void/src/constants/icons/auth_icons.dart';
 import 'package:quote_void/src/utils/async_value_ui.dart';
 import 'package:quote_void/src/widgets/custom_outlined_icon_button.dart';
-import 'package:quote_void/src/widgets/custom_scaffold.dart';
+import 'package:quote_void/src/widgets/responsive_center.dart';
 import 'package:quote_void/src/widgets/text_with_link.dart';
 import 'package:quote_void/src/constants/app_sizes.dart';
 import 'package:quote_void/src/constants/theme/app_text_style.dart';
@@ -29,43 +29,37 @@ class SignInScreen extends ConsumerWidget {
       await ref.read(signInControllerProvider.notifier).signInWithGoogle();
     }
 
-    return CustomScaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const Spacer(
-            flex: 25,
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.15,
-            child: Image.asset(
-              'assets/images/logo.png',
-              fit: BoxFit.fitHeight,
+    return Scaffold(
+      body: ResponsiveCenter(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.15,
+              child: Image.asset(
+                'assets/images/logo.png',
+                fit: BoxFit.fitHeight,
+              ),
             ),
-          ),
-          gapH12,
-          const Text(
-            'Quote Void',
-            textAlign: TextAlign.center,
-            style: AppTextStyle.title,
-          ),
-          const Spacer(
-            flex: 25,
-          ),
-          // TODO: Modularize following widget -> perhaps deal with error and loading states differently
-          Consumer(
-            builder: (_, ref, __) {
-              ref.listen<VoidAsyncValue>(
-                signInControllerProvider,
-                (_, state) => state.showSnackBarOnError(context),
-              );
-              final state = ref.watch(signInControllerProvider);
-              return state.when(
-                skipError: true,
-                data: (_) => Expanded(
-                  flex: 200,
-                  child: Column(
+            gapH12,
+            const Text(
+              'Quote Void',
+              textAlign: TextAlign.center,
+              style: AppTextStyle.title,
+            ),
+            // TODO: Modularize following widget -> perhaps deal with error and loading states differently
+            gapH64,
+            Consumer(
+              builder: (_, ref, __) {
+                ref.listen<VoidAsyncValue>(
+                  signInControllerProvider,
+                  (_, state) => state.showSnackBarOnError(context),
+                );
+                final state = ref.watch(signInControllerProvider);
+                return state.when(
+                  skipError: true,
+                  data: (_) => Column(
                     children: [
                       SignInForm(
                         onSubmit: (email, password) => signIn(
@@ -73,7 +67,7 @@ class SignInScreen extends ConsumerWidget {
                           password: password,
                         ),
                       ),
-                      const Spacer(flex: 20),
+                      gapH24,
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -96,31 +90,26 @@ class SignInScreen extends ConsumerWidget {
                           ),
                         ],
                       ),
-                      const Spacer(
-                        flex: 25,
-                      ),
+                      gapH64,
                       TextWithLink(
                         text: 'Don\'t have an account? ',
                         linkText: 'Sign up',
                         onTap: () => context.goNamed(AppRoute.signUp.name),
                       ),
-                      const Spacer(
-                        flex: 5,
-                      ),
                     ],
                   ),
-                ),
-                error: (error, stackTrace) => Container(),
-                loading: () => const Expanded(
-                  flex: 200,
-                  child: Center(
-                    child: CircularProgressIndicator(),
+                  error: (error, stackTrace) => Container(),
+                  loading: () => const Expanded(
+                    flex: 200,
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
                   ),
-                ),
-              );
-            },
-          ),
-        ],
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
