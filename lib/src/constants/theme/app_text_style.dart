@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quote_void/src/constants/app_sizes.dart';
 
+// TODO: Create and follow a design system (textStyle)
 class AppTextStyle {
   static const title = TextStyle(
     fontSize: Sizes.p32,
