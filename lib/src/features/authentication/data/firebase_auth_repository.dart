@@ -41,6 +41,9 @@ class AuthRepository {
   // Requires an apple developer account
   Future<void> signInWithAppleId() async {}
 
+  Future<void> resetPassword({required String email}) async =>
+      await _auth.sendPasswordResetEmail(email: email.trim());
+
   Future<void> signOut() => _auth.signOut();
 
   Future<void> signOutGoogle() async {
