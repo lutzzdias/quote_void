@@ -28,7 +28,11 @@ class _PasswordFieldState extends State<PasswordField> {
         hintText: 'Password',
         suffixIcon: GestureDetector(
           onTap: () => setState(() => isVisible = !isVisible),
-          child: const Icon(Icons.remove_red_eye),
+          child: Icon(
+            !isVisible
+                ? Icons.visibility_off_outlined
+                : Icons.visibility_outlined,
+          ),
         ),
       ),
       autovalidateMode: widget.autovalidateMode,
