@@ -18,7 +18,6 @@ TODO: Create art with screenshots
 - [Stack](#stack)
 - [Contributing](#contributing)
 - [Installation](#installation)
-- [License](#license)
 
 ## Stack
 - Flutter (frontend)
@@ -75,6 +74,3 @@ cd project-directory
 ```console
 flutter pub get
 ```
-
-## License
-Include the project's license and any relevant information about the license.
