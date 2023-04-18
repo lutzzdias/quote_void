@@ -58,7 +58,6 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // TODO: Add form validation to image
           ImageFormField(
             validator: (file) {
               if (file == null) return 'Pick a picture';
