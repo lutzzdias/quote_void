@@ -70,4 +70,11 @@ class AppTextStyle {
     fontWeight: FontWeight.bold,
     color: Colors.black,
   );
+
+  static final error = TextStyle(
+    fontStyle: FontStyle.normal,
+    fontSize: 13,
+    color: Colors.red[700],
+    height: 0.5,
+  );
 }

@@ -3,10 +3,9 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:quote_void/src/utils/image_helper.dart';
+import 'package:quote_void/src/features/authentication/presentation/sign_up/widgets/image_form_field.dart';
 import 'package:quote_void/src/widgets/password_field.dart';
 import 'package:quote_void/src/constants/app_sizes.dart';
-import 'package:quote_void/src/constants/theme/app_colors.dart';
 import 'package:quote_void/src/features/authentication/presentation/sign_up/sign_up_controller.dart';
 import 'package:quote_void/src/features/authentication/presentation/widgets/auth_button.dart';
 import 'package:uuid/uuid.dart';
@@ -52,17 +51,6 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
     }
   }
 
-  Future<void> pickImage() async {
-    final imageHelper = ref.watch(imageHelperProvider);
-    final file = await imageHelper.pickImage();
-    if (file != null) {
-      final croppedFile = await imageHelper.cropImage(file: file);
-      if (croppedFile != null) {
-        setState(() => _profilePic = File(croppedFile.path));
-      }
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -71,24 +59,15 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           // TODO: Add form validation to image
-          GestureDetector(
-            onTap: () => pickImage(),
-            child: Center(
-              child: FittedBox(
-                fit: BoxFit.contain,
-                child: CircleAvatar(
-                  radius: Sizes.p80,
-                  backgroundColor: AppColors.black,
-                  backgroundImage: _profilePic == null
-                      ? const AssetImage(
-                              'assets/images/default-profile-pic.png')
-                          as ImageProvider
-                      : FileImage(
-                          File(_profilePic!.path),
-                        ),
-                ),
-              ),
-            ),
+          ImageFormField(
+            validator: (file) {
+              if (file == null) return 'Pick a picture';
+              return null;
+            },
+            onChanged: (file) {
+              _profilePic = file;
+              _formKey.currentState?.validate();
+            },
           ),
           gapH32,
           TextFormField(
