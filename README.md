@@ -48,6 +48,7 @@ Before you get started, please take a moment to read through our contribution gu
 Before installing this project, you should have the following installed on your system:
 
 [Flutter SDK](https://flutter.dev/docs/get-started/install) (version 3.7.11 or later)
+
 [Android Studio](https://developer.android.com/studio) or [Visual Studio Code](https://code.visualstudio.com/) (optional)
 
 ### Install
