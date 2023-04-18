@@ -14,11 +14,6 @@ TODO: Create art with screenshots
   <img src="https://user-images.githubusercontent.com/80894260/232694413-16c9b23c-ec76-4dbd-a269-8fe0e411ff88.png" height="500">
 </p>
 
-## Table of Contents
-- [Stack](#stack)
-- [Contributing](#contributing)
-- [Installation](#installation)
-
 ## Stack
 - Flutter (frontend)
 - Firebase (backend)
