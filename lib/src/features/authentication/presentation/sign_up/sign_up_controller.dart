@@ -22,7 +22,7 @@ class SignUpController extends AutoDisposeAsyncNotifier<void> {
     TaskSnapshot task = await FirebaseStorage.instance
         .ref()
         .child('profile-pics')
-        .child('$username-${const Uuid().v4()}')
+        .child('${username}_${const Uuid().v4()}')
         .putFile(profilePic);
     final url = await task.ref.getDownloadURL();
     state = await AsyncValue.guard(() => authService.signUp(
