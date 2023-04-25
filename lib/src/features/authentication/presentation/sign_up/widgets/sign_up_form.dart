@@ -19,6 +19,7 @@ class SignUpForm extends ConsumerStatefulWidget {
 
 class _SignUpFormState extends ConsumerState<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
+  final _imgFormKey = GlobalKey<FormState>();
   bool _submitted = false;
   File? _profilePic;
 
@@ -29,7 +30,9 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
 
   Future<void> _submit() async {
     setState(() => _submitted = true);
-    if (_formKey.currentState!.validate()) {
+    bool formResult = _formKey.currentState!.validate();
+    bool imgFormResult = _imgFormKey.currentState!.validate();
+    if (formResult && imgFormResult) {
       ref.read(signUpControllerProvider.notifier).signUp(
             name: name,
             username: username,
@@ -47,16 +50,19 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          ImageFormField(
-            // TODO: Move validation to appropriate place in the architecture
-            validator: (file) {
-              if (file == null) return 'Profile picture cannot be empty.';
-              return null;
-            },
-            onChanged: (file) {
-              _profilePic = file;
-              _formKey.currentState?.validate();
-            },
+          Form(
+            key: _imgFormKey,
+            child: ImageFormField(
+              // TODO: Move validation to appropriate place in the architecture
+              validator: (file) {
+                if (file == null) return 'Profile picture cannot be empty.';
+                return null;
+              },
+              onChanged: (file) {
+                _profilePic = file;
+                _imgFormKey.currentState?.validate();
+              },
+            ),
           ),
           gapH32,
           TextFormField(
