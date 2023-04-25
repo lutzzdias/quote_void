@@ -76,6 +76,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
                 style: AppTextStyle.body,
               ),
               gapH24,
+              // TODO: Disable all fields while loading
               Form(
                 key: _formKey,
                 child: TextFormField(

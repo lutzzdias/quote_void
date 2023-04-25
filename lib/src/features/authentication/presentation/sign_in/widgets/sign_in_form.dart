@@ -33,6 +33,7 @@ class _SignInFormState extends State<SignInForm> {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: Disable all fields while loading
     return Form(
       key: _formKey,
       child: Column(
