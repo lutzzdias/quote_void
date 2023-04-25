@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quote_void/src/features/authentication/presentation/sign_up/widgets/image_form_field.dart';
@@ -8,15 +7,11 @@ import 'package:quote_void/src/widgets/password_field.dart';
 import 'package:quote_void/src/constants/app_sizes.dart';
 import 'package:quote_void/src/features/authentication/presentation/sign_up/sign_up_controller.dart';
 import 'package:quote_void/src/features/authentication/presentation/widgets/auth_button.dart';
-import 'package:uuid/uuid.dart';
 
 class SignUpForm extends ConsumerStatefulWidget {
   const SignUpForm({
     super.key,
-    required this.onSubmit,
   });
-
-  final ValueChanged<Map<String, String>> onSubmit;
 
   @override
   ConsumerState<SignUpForm> createState() => _SignUpFormState();
@@ -27,27 +22,21 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
   bool _submitted = false;
   File? _profilePic;
 
-  final Map<String, String> _values = {
-    'name': '',
-    'username': '',
-    'email': '',
-    'password': '',
-    'imageUrl': '',
-  };
+  String name = '';
+  String username = '';
+  String email = '';
+  String password = '';
 
   Future<void> _submit() async {
     setState(() => _submitted = true);
     if (_formKey.currentState!.validate()) {
-      // TODO: Move this logic to a more appropriate place
-      TaskSnapshot task = await FirebaseStorage.instance
-          .ref()
-          .child('profile-pics')
-          .child(_values['username']!)
-          .child(const Uuid().v4())
-          .putFile(_profilePic!);
-      final url = await task.ref.getDownloadURL();
-      _values['imageUrl'] = url;
-      widget.onSubmit(_values);
+      ref.read(signUpControllerProvider.notifier).signUp(
+            name: name,
+            username: username,
+            email: email,
+            password: password,
+            profilePic: _profilePic!,
+          );
     }
   }
 
@@ -80,8 +69,7 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
                 : AutovalidateMode.disabled,
 
             /// Remove consecutive spaces and leave only one space in its place
-            onChanged: (value) =>
-                _values['name'] = value.replaceAll(RegExp(r'\s+'), ' '),
+            onChanged: (value) => name = value.replaceAll(RegExp(r'\s+'), ' '),
             // TODO: Move validation to appropriate place in the architecture
             validator: (name) {
               if (name == null || name.isEmpty) {
@@ -106,7 +94,7 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
             autovalidateMode: _submitted
                 ? AutovalidateMode.onUserInteraction
                 : AutovalidateMode.disabled,
-            onChanged: (value) => _values['username'] = value,
+            onChanged: (value) => username = value,
             validator: (username) {
               // TODO: Move validation to appropriate place in the architecture
               if (username == null || username.isEmpty) {
@@ -140,7 +128,7 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
             autovalidateMode: _submitted
                 ? AutovalidateMode.onUserInteraction
                 : AutovalidateMode.disabled,
-            onChanged: (value) => _values['email'] = value,
+            onChanged: (value) => email = value,
             // TODO: Move validation to appropriate place in the architecture
             validator: (email) {
               if (email == null || email.isEmpty) {
@@ -170,7 +158,7 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
             autovalidateMode: _submitted
                 ? AutovalidateMode.onUserInteraction
                 : AutovalidateMode.disabled,
-            onChanged: (value) => _values['password'] = value,
+            onChanged: (value) => password = value,
             validator: (password) {
               // TODO: Move validation to appropriate place in the architecture
               if (password == null || password.isEmpty) {

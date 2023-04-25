@@ -22,16 +22,7 @@ class SignUpScreen extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  SignUpForm(
-                    onSubmit: (values) =>
-                        ref.read(signUpControllerProvider.notifier).signUp(
-                              name: values['name']!,
-                              username: values['username']!,
-                              email: values['email']!,
-                              password: values['password']!,
-                              imageUrl: values['imageUrl']!,
-                            ),
-                  ),
+                  const SignUpForm(),
                   gapH64,
                   TextWithLink(
                     text: 'Already have an account? ',
