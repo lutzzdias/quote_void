@@ -14,11 +14,6 @@ TODO: Create art with screenshots
   <img src="https://user-images.githubusercontent.com/80894260/232694413-16c9b23c-ec76-4dbd-a269-8fe0e411ff88.png" height="500">
 </p>
 
-## Table of Contents
-- [Stack](#stack)
-- [Contributing](#contributing)
-- [Installation](#installation)
-
 ## Stack
 - Flutter (frontend)
 - Firebase (backend)
@@ -53,6 +48,7 @@ Before you get started, please take a moment to read through our contribution gu
 Before installing this project, you should have the following installed on your system:
 
 [Flutter SDK](https://flutter.dev/docs/get-started/install) (version 3.7.11 or later)
+
 [Android Studio](https://developer.android.com/studio) or [Visual Studio Code](https://code.visualstudio.com/) (optional)
 
 ### Install
