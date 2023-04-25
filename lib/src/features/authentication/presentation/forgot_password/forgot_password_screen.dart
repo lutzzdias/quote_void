@@ -87,14 +87,22 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
                       ? AutovalidateMode.onUserInteraction
                       : AutovalidateMode.disabled,
                   onChanged: (value) => _email = value,
+                  // TODO: Move validation to appropriate place in the architecture
+                  // TODO: Make validation work for email AND username
                   validator: (emailOrUsername) {
-                    // TODO: Improve validation messages
-                    // TODO: Check for special characters
-                    // TODO: Email validation with Regex or package (?)
                     if (emailOrUsername == null || emailOrUsername.isEmpty) {
-                      return 'Can\'t be empty';
-                    } else if (emailOrUsername.length < 2) {
-                      return 'Too short';
+                      return 'Email address cannot be empty.';
+                    } else if (emailOrUsername.length < 4) {
+                      return 'Email address must be at least 4 characters long.';
+                    } else if (!emailOrUsername.contains('@')) {
+                      return 'Email address must contain an \'@\' symbol.';
+                    } else if (RegExp(r'[^a-zA-Z0-9@.]')
+                        .hasMatch(emailOrUsername)) {
+                      return 'Invalid characters in email address.';
+                    } else if (!RegExp(
+                            r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
+                        .hasMatch(emailOrUsername)) {
+                      return 'Invalid email address format.';
                     } else {
                       return null;
                     }

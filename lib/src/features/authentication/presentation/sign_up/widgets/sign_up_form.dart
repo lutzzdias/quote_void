@@ -59,8 +59,9 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           ImageFormField(
+            // TODO: Move validation to appropriate place in the architecture
             validator: (file) {
-              if (file == null) return 'Pick a picture';
+              if (file == null) return 'Profile picture cannot be empty.';
               return null;
             },
             onChanged: (file) {
@@ -77,14 +78,20 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
             autovalidateMode: _submitted
                 ? AutovalidateMode.onUserInteraction
                 : AutovalidateMode.disabled,
-            onChanged: (value) => _values['name'] = value,
+
+            /// Remove consecutive spaces and leave only one space in its place
+            onChanged: (value) =>
+                _values['name'] = value.replaceAll(RegExp(r'\s+'), ' '),
+            // TODO: Move validation to appropriate place in the architecture
             validator: (name) {
-              // TODO: Improve validation messages
-              // TODO: Check for special characters
               if (name == null || name.isEmpty) {
-                return 'Can\'t be empty';
+                return 'Name cannot be empty.';
               } else if (name.length < 2) {
-                return 'Too short';
+                return 'Name must be at least 2 characters long.';
+              } else if (name.length > 50) {
+                return 'Name cannot exceed 50 characters.';
+              } else if (!RegExp(r'^[A-Za-z\sÀ-ÖØ-öø-ÿ]*$').hasMatch(name)) {
+                return 'Name cannot contain numbers or special characters.';
               } else {
                 return null;
               }
@@ -101,12 +108,24 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
                 : AutovalidateMode.disabled,
             onChanged: (value) => _values['username'] = value,
             validator: (username) {
-              // TODO: Improve validation messages
-              // TODO: Check for special characters
+              // TODO: Move validation to appropriate place in the architecture
               if (username == null || username.isEmpty) {
-                return 'Can\'t be empty';
-              } else if (username.length < 2) {
-                return 'Too short';
+                return 'Username cannot be empty.';
+              } else if (username.length < 3) {
+                return 'Username must be at least 3 characters long.';
+              } else if (username.length > 20) {
+                return 'Username cannot exceed 20 characters.';
+              } else if (!RegExp(r'^[a-zA-Z0-9_]+$').hasMatch(username)) {
+                return 'Username can only contain letters, numbers and underscores.';
+              } else if (RegExp(r'^[\d_]').hasMatch(username)) {
+                return 'Username must start with a letter.';
+              } else if (RegExp(r'_{2,}').hasMatch(username)) {
+                return 'Username cannot contain consecutive underscores.';
+              }
+              // TODO: Check if username already exists
+              // ignore: dead_code
+              else if (false) {
+                return 'Username already exists.';
               } else {
                 return null;
               }
@@ -122,14 +141,25 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
                 ? AutovalidateMode.onUserInteraction
                 : AutovalidateMode.disabled,
             onChanged: (value) => _values['email'] = value,
+            // TODO: Move validation to appropriate place in the architecture
             validator: (email) {
-              // TODO: Improve validation messages
-              // TODO: Check for special characters
-              // TODO: Email validation with Regex or package
               if (email == null || email.isEmpty) {
-                return 'Can\'t be empty';
+                return 'Email address cannot be empty.';
+              } else if (email.length < 4) {
+                return 'Email address must be at least 4 characters long.';
               } else if (!email.contains('@')) {
-                return 'Invalid email';
+                return 'Email address must contain an \'@\' symbol.';
+              } else if (RegExp(r'[^a-zA-Z0-9@.]').hasMatch(email)) {
+                return 'Invalid characters in email address.';
+              } else if (!RegExp(
+                      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
+                  .hasMatch(email)) {
+                return 'Invalid email address format.';
+              }
+              // TODO: Check if email already exists
+              // ignore: dead_code
+              else if (false) {
+                return 'The email address is already in use.';
               } else {
                 return null;
               }
@@ -142,12 +172,13 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
                 : AutovalidateMode.disabled,
             onChanged: (value) => _values['password'] = value,
             validator: (password) {
-              // TODO: Improve validation messages
-              // TODO: Check for special characters
+              // TODO: Move validation to appropriate place in the architecture
               if (password == null || password.isEmpty) {
-                return 'Can\'t be empty';
-              } else if (password.length < 6) {
-                return 'Too short';
+                return 'Password cannot be empty.';
+              } else if (password.length < 8) {
+                return 'Password must be at least 8 characters long.';
+              } else if (password.length > 50) {
+                return 'Password cannot exceed 50 characters.';
               } else {
                 return null;
               }
