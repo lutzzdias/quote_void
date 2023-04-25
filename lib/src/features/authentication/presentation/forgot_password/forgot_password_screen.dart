@@ -80,6 +80,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
                 key: _formKey,
                 child: TextFormField(
                   keyboardType: TextInputType.emailAddress,
+                  autocorrect: false,
                   decoration: const InputDecoration(
                     hintText: 'Email address or username',
                   ),

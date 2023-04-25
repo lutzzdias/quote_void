@@ -40,6 +40,7 @@ class _SignInFormState extends State<SignInForm> {
         children: [
           TextFormField(
             keyboardType: TextInputType.emailAddress,
+            autocorrect: false,
             decoration: const InputDecoration(
               hintText: 'Email address or username',
             ),

@@ -67,6 +67,7 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
           gapH32,
           TextFormField(
             keyboardType: TextInputType.name,
+            autocorrect: false,
             decoration: const InputDecoration(
               labelText: 'Name',
             ),
@@ -94,6 +95,7 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
           gapH16,
           TextFormField(
             keyboardType: TextInputType.text,
+            autocorrect: false,
             decoration: const InputDecoration(
               hintText: 'Username',
             ),
@@ -128,6 +130,7 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
           gapH16,
           TextFormField(
             keyboardType: TextInputType.emailAddress,
+            autocorrect: false,
             decoration: const InputDecoration(
               hintText: 'Email address',
             ),
