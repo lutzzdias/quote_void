@@ -5,7 +5,6 @@ import 'package:quote_void/src/constants/app_sizes.dart';
 import 'package:quote_void/src/widgets/responsive_center.dart';
 import 'package:quote_void/src/widgets/text_with_link.dart';
 import 'package:quote_void/src/features/authentication/presentation/sign_up/widgets/sign_up_form.dart';
-import 'package:quote_void/src/features/authentication/presentation/sign_up/sign_up_controller.dart';
 import 'package:quote_void/src/routing/app_router.dart';
 
 class SignUpScreen extends ConsumerWidget {

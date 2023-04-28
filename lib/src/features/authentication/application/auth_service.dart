@@ -40,16 +40,15 @@ class AuthService {
   Future<void> signInWithGoogle() async {
     UserCredential result = await authRepository.signInWithGoogle();
 
-    // TODO: See if its possible that it comes as null and deal with it accordingly
     if (result.additionalUserInfo!.isNewUser) {
       userRepository.createUser(
         // Deal with null values (create screen that requires user to add necessary fields and store them in the document in firestore)
         user: AppUser(
           id: result.user!.uid,
-          name: result.user!.displayName ?? 'null',
-          username: result.additionalUserInfo!.username ?? 'null',
-          email: result.user!.email ?? 'null',
-          imageUrl: result.user!.photoURL ?? 'null',
+          name: result.user!.displayName ?? '',
+          username: result.additionalUserInfo!.username ?? '',
+          email: result.user!.email ?? '',
+          imageUrl: result.user!.photoURL ?? '',
         ),
       );
     }

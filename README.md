@@ -1,8 +1,9 @@
 # Quote Void
-Quote Void is the perfect app for storing and organizing your favorite quotes! 
-With Quote Void, you can easily organize your quotes through custom categories and tags. 
+
+Quote Void is the perfect app for storing and organizing your favorite quotes!
+With Quote Void, you can easily organize your quotes through custom categories and tags.
 You can store all the important info, such as the author, date and the quote itself, without complications and in a single app.
-The app makes it easy to add and edit quotes, and you can quickly browse and search through your collection. 
+The app makes it easy to add and edit quotes, and you can quickly browse and search through your collection.
 Whether you're a writer, a student, or just someone who loves collecting quotes, Quote Void is the ideal app for managing all of your quotes in one convenient place.
 
 TODO: Create art with screenshots
@@ -15,14 +16,16 @@ TODO: Create art with screenshots
 </p>
 
 ## Stack
+
 - Flutter (frontend)
 - Firebase (backend)
 - Riverpod (state management)
 - Go Router (routing)
 
 ## Contributing
-Contributions are welcome and encouraged! 
-This project is open to anyone who would like to help out, whether you're a seasoned developer or just getting started. 
+
+Contributions are welcome and encouraged!
+This project is open to anyone who would like to help out, whether you're a seasoned developer or just getting started.
 By contributing to this project, you'll be helping to make it better for everyone in the community.
 
 Before you get started, please take a moment to read through our contribution guidelines:
@@ -41,10 +44,10 @@ Before you get started, please take a moment to read through our contribution gu
 
 7. Respond to feedback: The maintainers may request changes to your pull request. Be open to feedback and make the requested changes if necessary.
 
-
 ## Installation
 
 ### Prerequisites
+
 Before installing this project, you should have the following installed on your system:
 
 [Flutter SDK](https://flutter.dev/docs/get-started/install) (version 3.7.11 or later)
@@ -52,21 +55,27 @@ Before installing this project, you should have the following installed on your 
 [Android Studio](https://developer.android.com/studio) or [Visual Studio Code](https://code.visualstudio.com/) (optional)
 
 ### Install
-1. Clone the project repository to your local machine using Git:
+
+1. Clone the project repository to your local machine using HTTP:
+
 ```console
 git clone https://github.com/lutzzdias/quote_void.git
 ```
-or using ssh
+
+Or using SSH:
+
 ```console
 git clone git@github.com:lutzzdias/quote_void.git
 ```
 
 2. Navigate to the project directory:
+
 ```console
-cd project-directory
+cd quote_void
 ```
 
 3. Run the following command to get the required dependencies:
+
 ```console
 flutter pub get
 ```
